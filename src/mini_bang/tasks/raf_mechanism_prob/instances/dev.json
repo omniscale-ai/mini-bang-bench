@@ -1,0 +1,67 @@
+{
+  "instance_id": "dev",
+  "instance_version": "1",
+  "split": "dev",
+  "description": "Predict RAF probabilities of hidden network families at network sizes unavailable to experiments.",
+  "instructions": "Predict RAF probability at the listed target sizes for each of two network families, named dev-family-1 and dev-family-2. The families share every public macro parameter except the catalysis probability p, which is hidden and differs between families; the names are in no particular order. Every request names one family and one of its 100 recorded networks: macro_params={\"family\": name, \"network_index\": k} with k in 0..99. The networks are independent draws of the family, served from recorded observations (observation pool probability-dev-families): at every size one recorded rollout (runs=1) at distinct snapshot times of the grid [0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1.0], and the RAF label (extras=[\"is_raf\"]). macro_params.seed and sample_params.seed are not available. Experiments are permitted only at integer sizes 3 through 12, including every element of a batch. All larger sizes are unavailable to the observation API. Infer how RAF probability depends on size from smaller networks and generalise it to the target sizes 20, 30, 40. The other macro parameters are fixed. is_raf is true only when the whole network is a RAF set: the reactants of every reaction can be produced from the food set, and every reaction has at least one catalyst among the species so produced. A network that only contains a smaller RAF subset is not RAF. The macro parameter complexity has no effect, and alpha(3) = 0, so every reaction has one or two reactants. Budget: 100 requests and 160000000 work units in the session; work costs are in capabilities. Return {'probabilities': {family: {T: probability}}}. Score: the mean Bernoulli KL divergence from the hidden target probability to the submitted one over all families and target sizes is divided by the same loss of the best answer that depends only on the target size and is the same for every family, computed on hidden gold; the primary score is max(0, 1 - ratio), from 0 to 1, larger is better. An answer that is the same for every family, any constant included, scores 0 and the exact target probabilities 1; the raw mean KL is also reported. Interventions (micro_params.max_raf, micro_params.prune_catalysts) are not available.",
+  "metadata": {
+    "level": 5,
+    "category": "Mechanism Inference",
+    "validation": {
+      "metric": "skill_vs_best_shared_answer"
+    },
+    "evaluation_protocol": "raf-size-extrapolation",
+    "primary_metric": "skill_vs_best_shared_answer",
+    "primary_metric_direction": "higher_is_better",
+    "api_limits": {
+      "max_generate_calls": 100,
+      "max_reaction_event_work_units_per_session": 160000000
+    }
+  },
+  "visible": {
+    "simulator_id": "raf",
+    "macro_params": {
+      "M0": 2,
+      "K": 3,
+      "complexity": 0.5,
+      "alpha": {
+        "kind": "linear_cutoff",
+        "scale": 0.05,
+        "cutoff": 3,
+        "floor": 0.0
+      },
+      "k_lig": 1.0,
+      "k_unlig": 0.05,
+      "step_limit": 50000
+    },
+    "seed_roles": {
+      "macro_params.family": "public name of a network family; its catalysis probability is hidden",
+      "sample_params.seed": "not available for recorded test objects",
+      "runs": "1: one recorded rollout per network and size",
+      "macro_params.network_index": "one of the 100 recorded networks of the family"
+    },
+    "saturations": [
+      20,
+      30,
+      40
+    ],
+    "experimental_domain": {
+      "saturation": {
+        "min": 3,
+        "max": 12
+      }
+    },
+    "allowed_interventions": [],
+    "network_families": [
+      "dev-family-1",
+      "dev-family-2"
+    ],
+    "observation_pool": "probability-dev-families"
+  },
+  "score_anchor": {
+    "shared_across": "families",
+    "best_shared_kl": 0.34887756966317407,
+    "min_score": 0.9140099490231955,
+    "min_score_reproduces": "mean_kl <= 0.03, as in the test instance"
+  }
+}

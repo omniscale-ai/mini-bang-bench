@@ -1,0 +1,6 @@
+{
+  "id": "field_payload_test",
+  "description": "Test-only field payload simulator",
+  "factory": "mini_bang.testing.field_payload_simulator.factory:create_macro",
+  "grouped_sampling_safe": true
+}

@@ -1,0 +1,73 @@
+{
+  "instance_id": "dev",
+  "instance_version": "1",
+  "split": "dev",
+  "description": "Forecast RAF probabilities of hidden growing networks at sizes unavailable to experiments.",
+  "instructions": "Forecast, for each of 6 hidden test chains, the probability that the chain is RAF after it grows on to each target size 14, 16, 20, 24. A chain is one growing network (one macro seed): its network at a larger size contains its network at a smaller size plus new species, each with a new reaction, and new catalysis. The target is the probability over the further growth of the chain, given its network at size 12. The test chains are named forecast-dev-chain-01 to forecast-dev-chain-06. Address a test chain by its name: macro_params={\"network\": name}; test chains are served from recorded rollouts (observation pool forecast-dev-chains); their macro seeds are not part of the benchmark. Experiments are permitted only at integer sizes 3 through 12, for test chains and for networks of your own choice (any macro_params.seed) alike; a sequence request such as saturation=[6, 9, 12] observes one chain at several sizes. On a test chain, snapshot times are distinct values of the grid [0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1.0], and min(100, floor(640 / T)) rollouts are recorded per size T (100 up to size 6, 53 at size 12), so that every recorded rollout can be observed at all grid times in one request. Rollout i of a test chain at a size is always the same recorded rollout, also within a sequence request: runs=n returns rollouts 0..n-1, and sample_params.seed is not available for test chains. Runs only repeat dynamics on the same network. Macro parameters, including M0 and p, are fixed. is_raf is true only when the whole network is a RAF set: the reactants of every reaction can be produced from the food set, and every reaction has at least one catalyst among the species so produced. A network that only contains a smaller RAF subset is not RAF. The macro parameter complexity has no effect, and alpha(3) = 0, so every reaction has one or two reactants. Query limits and work costs are in capabilities. Return {'probabilities': {chain: {T: probability}}}. Score: the mean Bernoulli KL divergence from the hidden target probability to the submitted one over all chains and target sizes is divided by the same loss of the best answer that depends only on the target size and is the same for every chain, computed on hidden gold; the primary score is max(0, 1 - ratio), from 0 to 1, larger is better. An answer that is the same for every chain, any constant or curve of size alone included, scores 0 and the exact target probabilities 1; the raw mean KL is also reported. Interventions (micro_params.max_raf, micro_params.prune_catalysts) are not available.",
+  "metadata": {
+    "level": 7,
+    "category": "Predictive Generalisation",
+    "validation": {
+      "metric": "skill_vs_best_shared_answer"
+    },
+    "api_limits": {
+      "max_generate_calls": 40,
+      "max_reaction_event_work_units_per_session": 40000000
+    },
+    "evaluation_protocol": "raf-size-extrapolation",
+    "primary_metric": "skill_vs_best_shared_answer",
+    "primary_metric_direction": "higher_is_better"
+  },
+  "visible": {
+    "simulator_id": "raf",
+    "macro_params": {
+      "M0": 2,
+      "K": 3,
+      "p": 0.15,
+      "complexity": 0.5,
+      "alpha": {
+        "kind": "linear_cutoff",
+        "scale": 0.05,
+        "cutoff": 3,
+        "floor": 0.0
+      },
+      "k_lig": 1.0,
+      "k_unlig": 0.05,
+      "step_limit": 50000
+    },
+    "seed_roles": {
+      "macro_params.network": "public name of a test chain, served from recorded rollouts",
+      "macro_params.seed": "network topology and catalysis of a chain of your own choice",
+      "sample_params.seed": "base for planner-derived independent micro rollout seeds of a chain of your own choice; not available for recorded test objects",
+      "runs": "independent micro trajectories on the same macro network; never independent RAF labels"
+    },
+    "experimental_domain": {
+      "saturation": {
+        "min": 3,
+        "max": 12
+      }
+    },
+    "allowed_interventions": [],
+    "test_networks": [
+      "forecast-dev-chain-01",
+      "forecast-dev-chain-02",
+      "forecast-dev-chain-03",
+      "forecast-dev-chain-04",
+      "forecast-dev-chain-05",
+      "forecast-dev-chain-06"
+    ],
+    "saturations": [
+      14,
+      16,
+      20,
+      24
+    ],
+    "observation_pool": "forecast-dev-chains"
+  },
+  "score_anchor": {
+    "shared_across": "chains",
+    "best_shared_kl": 0.11010389665112019,
+    "min_score": 0.8183533861351625,
+    "min_score_reproduces": "mean_kl <= 0.02, as in the test instance"
+  }
+}

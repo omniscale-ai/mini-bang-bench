@@ -1,0 +1,2 @@
+      minio-init:
+        condition: service_completed_successfully

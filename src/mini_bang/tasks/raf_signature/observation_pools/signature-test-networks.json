@@ -1,0 +1,696 @@
+{
+  "format": "mini_bang.raf_recorded_observations.v1",
+  "name": "signature-test-networks",
+  "description": "Networks at their listed size: the full-horizon run limit of one request, ten grid times. RAF labels are the gold and are not recorded.",
+  "snapshot_times": [
+    0.001,
+    0.002,
+    0.005,
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.2,
+    0.5,
+    1.0
+  ],
+  "address": {
+    "group": "network"
+  },
+  "sequences": false,
+  "groups": {
+    "signature-test-net-01": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-02": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-03": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-04": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-05": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-06": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-07": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-08": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-09": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-10": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-11": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-12": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-13": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-14": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-15": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-16": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-17": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-18": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-19": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-20": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-21": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-22": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-23": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-24": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-25": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-26": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-27": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-28": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-29": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-30": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-31": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-32": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-test-net-33": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-34": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-35": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-36": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-37": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-38": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-39": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-40": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-41": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-42": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-43": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-44": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-45": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-46": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-47": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-48": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-49": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-50": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-51": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-52": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-53": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-54": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-55": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-56": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-57": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-58": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-59": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-60": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-61": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-62": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-63": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-64": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-test-net-65": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-66": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-67": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-68": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-69": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-70": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-71": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-72": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-73": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-74": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-75": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-76": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-77": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-78": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-79": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-80": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-81": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-82": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-83": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-84": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-85": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-86": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-87": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-88": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-89": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-90": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-91": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-92": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-93": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-94": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-95": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-test-net-96": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    }
+  },
+  "arrays": "signature-test-networks.npz"
+}

@@ -1,0 +1,28 @@
+
+  agent:
+    image: $agent_image
+    environment:
+      MINI_BANG_RUNNER_URL: http://runner:$runner_port
+      # Empty values come from the operator shell: session_id and session_token
+      # returned by POST /v1/runs, and the agent unless the image already sets it.
+      MINI_BANG_RUN_ID:
+      MINI_BANG_RUNNER_TOKEN:
+      MINI_BANG_AGENT:
+      MINI_BANG_AGENT_FILE:
+    depends_on:
+      - runner
+    # Only the internal boundary network: the runner is the agent's sole peer.
+    networks:
+      - agent-boundary
+    read_only: true
+    tmpfs:
+      - /tmp:rw,nosuid,nodev,size=256m
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    pids_limit: 256
+    mem_limit: 1g
+    cpus: 2
+    profiles:
+      - agent

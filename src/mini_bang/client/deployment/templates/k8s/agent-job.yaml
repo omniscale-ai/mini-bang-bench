@@ -1,0 +1,49 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: mini-bang-agent-$run_id
+  namespace: $namespace
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 300
+  template:
+    metadata:
+      labels:
+        mini-bang-role: agent
+    spec:
+      restartPolicy: Never
+      automountServiceAccountToken: false
+      containers:
+        - name: agent
+          image: $agent_image
+          env:
+            - name: MINI_BANG_RUNNER_URL
+              value: "http://mini-bang-runner:8765"
+            - name: MINI_BANG_RUNNER_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: $session_secret_name
+                  key: token
+            - name: MINI_BANG_TASK_ID
+              value: $task_id
+            - name: MINI_BANG_INSTANCE_ID
+              value: $instance_id
+            - name: MINI_BANG_RUN_ID
+              value: $run_id
+$agent_env$container_command$container_args$resources
+          securityContext:
+            readOnlyRootFilesystem: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          volumeMounts:
+            - name: tmp
+              mountPath: /tmp
+      securityContext:
+        runAsNonRoot: true
+        seccompProfile:
+          type: RuntimeDefault
+      volumes:
+        - name: tmp
+          emptyDir:
+            medium: Memory

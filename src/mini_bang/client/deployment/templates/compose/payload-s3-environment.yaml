@@ -1,0 +1,6 @@
+      MINI_BANG_PAYLOAD_S3_BUCKET: $s3_bucket
+      MINI_BANG_PAYLOAD_S3_PREFIX: $s3_prefix
+      MINI_BANG_PAYLOAD_S3_ENDPOINT_URL: $s3_endpoint_url
+      MINI_BANG_PAYLOAD_S3_REGION: $s3_region
+      AWS_ACCESS_KEY_ID: $aws_access_key_id
+      AWS_SECRET_ACCESS_KEY: $aws_secret_access_key

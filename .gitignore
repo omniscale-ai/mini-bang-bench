@@ -1,0 +1,22 @@
+ 
+/workdir/
+.venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+/build/
+/dist/
+# External simulation pools and archives stay outside git.
+/data/
+auth.json
+*.tar
+*.tar.gz
+*.tgz
+
+# Local credentials, machine files and non-runtime source archives.
+.DS_Store
+.env
+.env.*
+!.env.example
+*.pem
+*.key

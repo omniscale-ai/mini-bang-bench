@@ -1,0 +1,1204 @@
+{
+  "instance_id": "named-chains",
+  "instance_version": "1",
+  "split": "test",
+  "description": "Forecast later growth levels of each test chain from what can be observed at its first level.",
+  "instructions": "Population fate, per chain. A chain is one macro seed: nested networks growing through the set's sizes (a larger network keeps all earlier species, reactions and catalysis links and adds new species, their reactions and new catalysis links, including new catalysts on old reactions). Chemistry at every size starts from scratch: food species 5 molecules, all others 0, time 0 to 1. The macro parameter complexity has no effect, and alpha(3) = 0, so every reaction has one or two reactants. Sets: seq_A sizes [6, 8, 10] and seq_B sizes [10, 12, 14]. Train chains are the listed train_seeds, addressed by macro_params={\"seed\": s}, and may be observed at any sizes. Test chains are named fate-test-chain-01 to fate-test-chain-32 (seq_A) and fate-test-chain-33 to fate-test-chain-64 (seq_B), as listed in test_chains; address a test chain by its name: macro_params={\"network\": name} (or the argument network=name). Test chains are served from recorded rollouts (observation pool fate-test-chains); their macro seeds are not part of the benchmark. A test chain is observed only at its set's first size (6 for seq_A, 10 for seq_B), given as an integer, at distinct times of the 100-point public snapshot grid, with at most 100 (seq_A) or 64 (seq_B) recorded rollouts, so that every recorded rollout can be observed at all grid times in one request. Rollout i of a test chain is always the same recorded rollout: runs=n returns rollouts 0..n-1, and sample_params.seed is not available for test chains. Every other macro seed and every macro parameter change is rejected. For each test chain predict, at its two later sizes, the 0.1/0.5/0.9 quantiles of the target of one independent rollout for each species in target_species[set][chain][size]: log1p(EMA of the species count over the last 100 values of the 100-point public snapshot grid, decay 0.95). Return {'predicted_quantiles': {set: {chain: {size: {species: {'0.1': q10, '0.5': q50, '0.9': q90}}}}}} with string keys, e.g. {'seq_A': {'fate-test-chain-01': {'8': {'4': {'0.1': 0.5, '0.5': 1.2, '0.9': 2.0}}}}}. Score: pinball loss against hidden independent rollouts on each chain's actual networks, averaged over rollouts and quantiles, then species, sizes and chains (equal weights), giving L per set. Per set score = min(1, max(0, 1 - (L - L1) / (L0 - L1))); the final score is the mean over the two sets. L0 is the lower gold loss of two answers without information about the chain's later growth: population quantiles per size and species number, or the chain's own size-T1 quantiles (population quantiles for new species). L1 is the information limit: quantiles of many growth continuations from the exact simulator state at the moment size T1 is reached, with fresh randomness. Raw losses and both anchors are reported, as is the unclipped score; there is no pass threshold. Budget: 192 calls and 588800000 reaction-event work units for the session (one rollout costs 50000 * sum(T - M0 + 2) units over the full snapshot horizon): enough for 8 rollouts of every train chain at all three sizes and of every test chain at its first size. Interventions (micro_params.max_raf, micro_params.prune_catalysts) are not available.",
+  "metadata": {
+    "level": 5,
+    "category": "Mechanism Inference",
+    "api_limits": {
+      "max_generate_calls": 192,
+      "max_reaction_event_work_units_per_session": 588800000
+    },
+    "validation": {
+      "quantiles": [
+        0.1,
+        0.5,
+        0.9
+      ],
+      "ema_tail_steps": 100,
+      "ema_decay": 0.95
+    },
+    "primary_metric": "score",
+    "primary_metric_direction": "higher_is_better",
+    "budget_rationale": "8 rollouts of every train chain at all sizes and of every test chain at T1, 2 calls per chain. Not a difficulty knob: test levels 2 and 3 cannot be observed."
+  },
+  "visible": {
+    "simulator_id": "raf",
+    "macro_params": {
+      "M0": 2,
+      "K": 3,
+      "p": 0.15,
+      "complexity": 0.5,
+      "alpha": {
+        "kind": "linear_cutoff",
+        "scale": 0.05,
+        "cutoff": 3,
+        "floor": 0.0
+      },
+      "k_lig": 1.0,
+      "k_unlig": 0.05,
+      "step_limit": 50000
+    },
+    "seed_roles": {
+      "macro_params.network": "public name of a test chain, served from recorded rollouts",
+      "macro_params.seed": "one train chain: network topology and catalysis at every size",
+      "sample_params.seed": "base for planner-derived independent micro rollout seeds of a train chain; not available for recorded test objects",
+      "runs": "independent micro trajectories on the same networks; never new networks"
+    },
+    "sequences": [
+      {
+        "id": "seq_A",
+        "saturations": [
+          6,
+          8,
+          10
+        ]
+      },
+      {
+        "id": "seq_B",
+        "saturations": [
+          10,
+          12,
+          14
+        ]
+      }
+    ],
+    "train_seeds": {
+      "seq_A": [
+        10001,
+        10002,
+        10003,
+        10004,
+        10005,
+        10006,
+        10007,
+        10008,
+        10009,
+        10010,
+        10011,
+        10012,
+        10013,
+        10014,
+        10015,
+        10016
+      ],
+      "seq_B": [
+        20001,
+        20002,
+        20003,
+        20004,
+        20005,
+        20006,
+        20007,
+        20008,
+        20009,
+        20010,
+        20011,
+        20012,
+        20013,
+        20014,
+        20015,
+        20016
+      ]
+    },
+    "test_chains": {
+      "seq_A": [
+        "fate-test-chain-01",
+        "fate-test-chain-02",
+        "fate-test-chain-03",
+        "fate-test-chain-04",
+        "fate-test-chain-05",
+        "fate-test-chain-06",
+        "fate-test-chain-07",
+        "fate-test-chain-08",
+        "fate-test-chain-09",
+        "fate-test-chain-10",
+        "fate-test-chain-11",
+        "fate-test-chain-12",
+        "fate-test-chain-13",
+        "fate-test-chain-14",
+        "fate-test-chain-15",
+        "fate-test-chain-16",
+        "fate-test-chain-17",
+        "fate-test-chain-18",
+        "fate-test-chain-19",
+        "fate-test-chain-20",
+        "fate-test-chain-21",
+        "fate-test-chain-22",
+        "fate-test-chain-23",
+        "fate-test-chain-24",
+        "fate-test-chain-25",
+        "fate-test-chain-26",
+        "fate-test-chain-27",
+        "fate-test-chain-28",
+        "fate-test-chain-29",
+        "fate-test-chain-30",
+        "fate-test-chain-31",
+        "fate-test-chain-32"
+      ],
+      "seq_B": [
+        "fate-test-chain-33",
+        "fate-test-chain-34",
+        "fate-test-chain-35",
+        "fate-test-chain-36",
+        "fate-test-chain-37",
+        "fate-test-chain-38",
+        "fate-test-chain-39",
+        "fate-test-chain-40",
+        "fate-test-chain-41",
+        "fate-test-chain-42",
+        "fate-test-chain-43",
+        "fate-test-chain-44",
+        "fate-test-chain-45",
+        "fate-test-chain-46",
+        "fate-test-chain-47",
+        "fate-test-chain-48",
+        "fate-test-chain-49",
+        "fate-test-chain-50",
+        "fate-test-chain-51",
+        "fate-test-chain-52",
+        "fate-test-chain-53",
+        "fate-test-chain-54",
+        "fate-test-chain-55",
+        "fate-test-chain-56",
+        "fate-test-chain-57",
+        "fate-test-chain-58",
+        "fate-test-chain-59",
+        "fate-test-chain-60",
+        "fate-test-chain-61",
+        "fate-test-chain-62",
+        "fate-test-chain-63",
+        "fate-test-chain-64"
+      ]
+    },
+    "test_networks": [
+      "fate-test-chain-01",
+      "fate-test-chain-02",
+      "fate-test-chain-03",
+      "fate-test-chain-04",
+      "fate-test-chain-05",
+      "fate-test-chain-06",
+      "fate-test-chain-07",
+      "fate-test-chain-08",
+      "fate-test-chain-09",
+      "fate-test-chain-10",
+      "fate-test-chain-11",
+      "fate-test-chain-12",
+      "fate-test-chain-13",
+      "fate-test-chain-14",
+      "fate-test-chain-15",
+      "fate-test-chain-16",
+      "fate-test-chain-17",
+      "fate-test-chain-18",
+      "fate-test-chain-19",
+      "fate-test-chain-20",
+      "fate-test-chain-21",
+      "fate-test-chain-22",
+      "fate-test-chain-23",
+      "fate-test-chain-24",
+      "fate-test-chain-25",
+      "fate-test-chain-26",
+      "fate-test-chain-27",
+      "fate-test-chain-28",
+      "fate-test-chain-29",
+      "fate-test-chain-30",
+      "fate-test-chain-31",
+      "fate-test-chain-32",
+      "fate-test-chain-33",
+      "fate-test-chain-34",
+      "fate-test-chain-35",
+      "fate-test-chain-36",
+      "fate-test-chain-37",
+      "fate-test-chain-38",
+      "fate-test-chain-39",
+      "fate-test-chain-40",
+      "fate-test-chain-41",
+      "fate-test-chain-42",
+      "fate-test-chain-43",
+      "fate-test-chain-44",
+      "fate-test-chain-45",
+      "fate-test-chain-46",
+      "fate-test-chain-47",
+      "fate-test-chain-48",
+      "fate-test-chain-49",
+      "fate-test-chain-50",
+      "fate-test-chain-51",
+      "fate-test-chain-52",
+      "fate-test-chain-53",
+      "fate-test-chain-54",
+      "fate-test-chain-55",
+      "fate-test-chain-56",
+      "fate-test-chain-57",
+      "fate-test-chain-58",
+      "fate-test-chain-59",
+      "fate-test-chain-60",
+      "fate-test-chain-61",
+      "fate-test-chain-62",
+      "fate-test-chain-63",
+      "fate-test-chain-64"
+    ],
+    "target_species": {
+      "seq_A": {
+        "fate-test-chain-01": {
+          "8": [
+            "4",
+            "5",
+            "7"
+          ],
+          "10": [
+            "4",
+            "5",
+            "7",
+            "10"
+          ]
+        },
+        "fate-test-chain-02": {
+          "8": [
+            "3",
+            "4",
+            "6"
+          ],
+          "10": [
+            "3",
+            "4",
+            "6",
+            "9"
+          ]
+        },
+        "fate-test-chain-03": {
+          "8": [
+            "5",
+            "6"
+          ],
+          "10": [
+            "5",
+            "6",
+            "9",
+            "10"
+          ]
+        },
+        "fate-test-chain-04": {
+          "8": [
+            "6",
+            "8"
+          ],
+          "10": [
+            "6",
+            "8",
+            "9",
+            "10"
+          ]
+        },
+        "fate-test-chain-05": {
+          "8": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ],
+          "10": [
+            "3",
+            "4",
+            "5",
+            "6"
+          ]
+        },
+        "fate-test-chain-06": {
+          "8": [
+            "3",
+            "6",
+            "7"
+          ],
+          "10": [
+            "3",
+            "6",
+            "7",
+            "9"
+          ]
+        },
+        "fate-test-chain-07": {
+          "8": [
+            "4",
+            "5",
+            "6"
+          ],
+          "10": [
+            "4",
+            "5",
+            "6",
+            "9"
+          ]
+        },
+        "fate-test-chain-08": {
+          "8": [
+            "4",
+            "5"
+          ],
+          "10": [
+            "4",
+            "5",
+            "9",
+            "10"
+          ]
+        },
+        "fate-test-chain-09": {
+          "8": [
+            "3",
+            "4",
+            "5",
+            "8"
+          ],
+          "10": [
+            "3",
+            "4",
+            "5",
+            "8"
+          ]
+        },
+        "fate-test-chain-10": {
+          "8": [
+            "6",
+            "7",
+            "8"
+          ],
+          "10": [
+            "6",
+            "7",
+            "8",
+            "10"
+          ]
+        },
+        "fate-test-chain-11": {
+          "8": [
+            "3",
+            "7"
+          ],
+          "10": [
+            "3",
+            "7",
+            "9",
+            "10"
+          ]
+        },
+        "fate-test-chain-12": {
+          "8": [
+            "7",
+            "8"
+          ],
+          "10": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ]
+        },
+        "fate-test-chain-13": {
+          "8": [
+            "6",
+            "7",
+            "8"
+          ],
+          "10": [
+            "6",
+            "7",
+            "8",
+            "10"
+          ]
+        },
+        "fate-test-chain-14": {
+          "8": [
+            "3",
+            "4",
+            "5",
+            "8"
+          ],
+          "10": [
+            "3",
+            "4",
+            "5",
+            "8"
+          ]
+        },
+        "fate-test-chain-15": {
+          "8": [
+            "3",
+            "6"
+          ],
+          "10": [
+            "3",
+            "6",
+            "9",
+            "10"
+          ]
+        },
+        "fate-test-chain-16": {
+          "8": [
+            "5",
+            "7",
+            "8"
+          ],
+          "10": [
+            "5",
+            "7",
+            "8",
+            "10"
+          ]
+        },
+        "fate-test-chain-17": {
+          "8": [
+            "5",
+            "6",
+            "8"
+          ],
+          "10": [
+            "5",
+            "6",
+            "8",
+            "9"
+          ]
+        },
+        "fate-test-chain-18": {
+          "8": [
+            "3",
+            "6",
+            "7"
+          ],
+          "10": [
+            "3",
+            "6",
+            "7",
+            "9"
+          ]
+        },
+        "fate-test-chain-19": {
+          "8": [
+            "3",
+            "4",
+            "8"
+          ],
+          "10": [
+            "3",
+            "4",
+            "8",
+            "9"
+          ]
+        },
+        "fate-test-chain-20": {
+          "8": [
+            "5",
+            "7"
+          ],
+          "10": [
+            "5",
+            "7",
+            "9",
+            "10"
+          ]
+        },
+        "fate-test-chain-21": {
+          "8": [
+            "4",
+            "5",
+            "7",
+            "8"
+          ],
+          "10": [
+            "4",
+            "5",
+            "7",
+            "8"
+          ]
+        },
+        "fate-test-chain-22": {
+          "8": [
+            "4",
+            "8"
+          ],
+          "10": [
+            "4",
+            "8",
+            "9",
+            "10"
+          ]
+        },
+        "fate-test-chain-23": {
+          "8": [
+            "4",
+            "5",
+            "7"
+          ],
+          "10": [
+            "4",
+            "5",
+            "7",
+            "10"
+          ]
+        },
+        "fate-test-chain-24": {
+          "8": [
+            "4",
+            "5",
+            "6"
+          ],
+          "10": [
+            "4",
+            "5",
+            "6",
+            "9"
+          ]
+        },
+        "fate-test-chain-25": {
+          "8": [
+            "3",
+            "5"
+          ],
+          "10": [
+            "3",
+            "5",
+            "9",
+            "10"
+          ]
+        },
+        "fate-test-chain-26": {
+          "8": [
+            "3",
+            "7"
+          ],
+          "10": [
+            "3",
+            "7",
+            "9",
+            "10"
+          ]
+        },
+        "fate-test-chain-27": {
+          "8": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ],
+          "10": [
+            "5",
+            "6",
+            "7",
+            "8"
+          ]
+        },
+        "fate-test-chain-28": {
+          "8": [
+            "3",
+            "5",
+            "6",
+            "8"
+          ],
+          "10": [
+            "3",
+            "5",
+            "6",
+            "8"
+          ]
+        },
+        "fate-test-chain-29": {
+          "8": [
+            "7",
+            "8"
+          ],
+          "10": [
+            "7",
+            "8",
+            "9",
+            "10"
+          ]
+        },
+        "fate-test-chain-30": {
+          "8": [
+            "3",
+            "7",
+            "8"
+          ],
+          "10": [
+            "3",
+            "7",
+            "8",
+            "9"
+          ]
+        },
+        "fate-test-chain-31": {
+          "8": [
+            "3",
+            "6",
+            "8"
+          ],
+          "10": [
+            "3",
+            "6",
+            "8",
+            "10"
+          ]
+        },
+        "fate-test-chain-32": {
+          "8": [
+            "3",
+            "5",
+            "6"
+          ],
+          "10": [
+            "3",
+            "5",
+            "6",
+            "10"
+          ]
+        }
+      },
+      "seq_B": {
+        "fate-test-chain-33": {
+          "12": [
+            "5",
+            "7",
+            "8",
+            "9"
+          ],
+          "14": [
+            "5",
+            "7",
+            "8",
+            "9"
+          ]
+        },
+        "fate-test-chain-34": {
+          "12": [
+            "5",
+            "6",
+            "7",
+            "12"
+          ],
+          "14": [
+            "5",
+            "6",
+            "7",
+            "12"
+          ]
+        },
+        "fate-test-chain-35": {
+          "12": [
+            "3",
+            "4",
+            "6",
+            "12"
+          ],
+          "14": [
+            "3",
+            "4",
+            "6",
+            "12"
+          ]
+        },
+        "fate-test-chain-36": {
+          "12": [
+            "5",
+            "8",
+            "10"
+          ],
+          "14": [
+            "5",
+            "8",
+            "10",
+            "14"
+          ]
+        },
+        "fate-test-chain-37": {
+          "12": [
+            "5",
+            "6",
+            "10",
+            "11"
+          ],
+          "14": [
+            "5",
+            "6",
+            "10",
+            "11"
+          ]
+        },
+        "fate-test-chain-38": {
+          "12": [
+            "3",
+            "5",
+            "10"
+          ],
+          "14": [
+            "3",
+            "5",
+            "10",
+            "13"
+          ]
+        },
+        "fate-test-chain-39": {
+          "12": [
+            "9",
+            "11"
+          ],
+          "14": [
+            "9",
+            "11",
+            "13",
+            "14"
+          ]
+        },
+        "fate-test-chain-40": {
+          "12": [
+            "7",
+            "8",
+            "9"
+          ],
+          "14": [
+            "7",
+            "8",
+            "9",
+            "13"
+          ]
+        },
+        "fate-test-chain-41": {
+          "12": [
+            "5",
+            "9",
+            "12"
+          ],
+          "14": [
+            "5",
+            "9",
+            "12",
+            "14"
+          ]
+        },
+        "fate-test-chain-42": {
+          "12": [
+            "3",
+            "8",
+            "10"
+          ],
+          "14": [
+            "3",
+            "8",
+            "10",
+            "14"
+          ]
+        },
+        "fate-test-chain-43": {
+          "12": [
+            "4",
+            "8",
+            "9"
+          ],
+          "14": [
+            "4",
+            "8",
+            "9",
+            "13"
+          ]
+        },
+        "fate-test-chain-44": {
+          "12": [
+            "6",
+            "9",
+            "10",
+            "12"
+          ],
+          "14": [
+            "6",
+            "9",
+            "10",
+            "12"
+          ]
+        },
+        "fate-test-chain-45": {
+          "12": [
+            "4",
+            "6",
+            "7"
+          ],
+          "14": [
+            "4",
+            "6",
+            "7",
+            "14"
+          ]
+        },
+        "fate-test-chain-46": {
+          "12": [
+            "3",
+            "4",
+            "5",
+            "7"
+          ],
+          "14": [
+            "3",
+            "4",
+            "5",
+            "7"
+          ]
+        },
+        "fate-test-chain-47": {
+          "12": [
+            "4",
+            "8",
+            "11",
+            "12"
+          ],
+          "14": [
+            "4",
+            "8",
+            "11",
+            "12"
+          ]
+        },
+        "fate-test-chain-48": {
+          "12": [
+            "7",
+            "8",
+            "9",
+            "12"
+          ],
+          "14": [
+            "7",
+            "8",
+            "9",
+            "12"
+          ]
+        },
+        "fate-test-chain-49": {
+          "12": [
+            "5",
+            "8",
+            "9"
+          ],
+          "14": [
+            "5",
+            "8",
+            "9",
+            "14"
+          ]
+        },
+        "fate-test-chain-50": {
+          "12": [
+            "3",
+            "7",
+            "11"
+          ],
+          "14": [
+            "3",
+            "7",
+            "11",
+            "13"
+          ]
+        },
+        "fate-test-chain-51": {
+          "12": [
+            "3",
+            "5",
+            "6",
+            "8"
+          ],
+          "14": [
+            "3",
+            "5",
+            "6",
+            "8"
+          ]
+        },
+        "fate-test-chain-52": {
+          "12": [
+            "6",
+            "7",
+            "10",
+            "11"
+          ],
+          "14": [
+            "6",
+            "7",
+            "10",
+            "11"
+          ]
+        },
+        "fate-test-chain-53": {
+          "12": [
+            "6",
+            "9",
+            "11"
+          ],
+          "14": [
+            "6",
+            "9",
+            "11",
+            "13"
+          ]
+        },
+        "fate-test-chain-54": {
+          "12": [
+            "3",
+            "4",
+            "6"
+          ],
+          "14": [
+            "3",
+            "4",
+            "6",
+            "13"
+          ]
+        },
+        "fate-test-chain-55": {
+          "12": [
+            "3",
+            "6",
+            "11"
+          ],
+          "14": [
+            "3",
+            "6",
+            "11",
+            "13"
+          ]
+        },
+        "fate-test-chain-56": {
+          "12": [
+            "6",
+            "9",
+            "12"
+          ],
+          "14": [
+            "6",
+            "9",
+            "12",
+            "14"
+          ]
+        },
+        "fate-test-chain-57": {
+          "12": [
+            "3",
+            "4",
+            "11",
+            "12"
+          ],
+          "14": [
+            "3",
+            "4",
+            "11",
+            "12"
+          ]
+        },
+        "fate-test-chain-58": {
+          "12": [
+            "5",
+            "8",
+            "12"
+          ],
+          "14": [
+            "5",
+            "8",
+            "12",
+            "13"
+          ]
+        },
+        "fate-test-chain-59": {
+          "12": [
+            "3",
+            "9",
+            "10",
+            "12"
+          ],
+          "14": [
+            "3",
+            "9",
+            "10",
+            "12"
+          ]
+        },
+        "fate-test-chain-60": {
+          "12": [
+            "3",
+            "8",
+            "9",
+            "11"
+          ],
+          "14": [
+            "3",
+            "8",
+            "9",
+            "11"
+          ]
+        },
+        "fate-test-chain-61": {
+          "12": [
+            "4",
+            "6",
+            "10",
+            "12"
+          ],
+          "14": [
+            "4",
+            "6",
+            "10",
+            "12"
+          ]
+        },
+        "fate-test-chain-62": {
+          "12": [
+            "6",
+            "7",
+            "10"
+          ],
+          "14": [
+            "6",
+            "7",
+            "10",
+            "14"
+          ]
+        },
+        "fate-test-chain-63": {
+          "12": [
+            "3",
+            "4",
+            "10",
+            "12"
+          ],
+          "14": [
+            "3",
+            "4",
+            "10",
+            "12"
+          ]
+        },
+        "fate-test-chain-64": {
+          "12": [
+            "9",
+            "11",
+            "12"
+          ],
+          "14": [
+            "9",
+            "11",
+            "12",
+            "14"
+          ]
+        }
+      }
+    },
+    "snapshot_times": [
+      0.01,
+      0.02,
+      0.03,
+      0.04,
+      0.05,
+      0.06,
+      0.07,
+      0.08,
+      0.09,
+      0.1,
+      0.11,
+      0.12,
+      0.13,
+      0.14,
+      0.15,
+      0.16,
+      0.17,
+      0.18,
+      0.19,
+      0.2,
+      0.21,
+      0.22,
+      0.23,
+      0.24,
+      0.25,
+      0.26,
+      0.27,
+      0.28,
+      0.29,
+      0.3,
+      0.31,
+      0.32,
+      0.33,
+      0.34,
+      0.35,
+      0.36,
+      0.37,
+      0.38,
+      0.39,
+      0.4,
+      0.41,
+      0.42,
+      0.43,
+      0.44,
+      0.45,
+      0.46,
+      0.47,
+      0.48,
+      0.49,
+      0.5,
+      0.51,
+      0.52,
+      0.53,
+      0.54,
+      0.55,
+      0.56,
+      0.57,
+      0.58,
+      0.59,
+      0.6,
+      0.61,
+      0.62,
+      0.63,
+      0.64,
+      0.65,
+      0.66,
+      0.67,
+      0.68,
+      0.69,
+      0.7,
+      0.71,
+      0.72,
+      0.73,
+      0.74,
+      0.75,
+      0.76,
+      0.77,
+      0.78,
+      0.79,
+      0.8,
+      0.81,
+      0.82,
+      0.83,
+      0.84,
+      0.85,
+      0.86,
+      0.87,
+      0.88,
+      0.89,
+      0.9,
+      0.91,
+      0.92,
+      0.93,
+      0.94,
+      0.95,
+      0.96,
+      0.97,
+      0.98,
+      0.99,
+      1.0
+    ],
+    "target": {
+      "space": "log1p_ema_count",
+      "ema_tail_steps": 100,
+      "ema_decay": 0.95,
+      "quantiles": [
+        0.1,
+        0.5,
+        0.9
+      ]
+    },
+    "allowed_interventions": [],
+    "observation_pool": "fate-test-chains"
+  }
+}

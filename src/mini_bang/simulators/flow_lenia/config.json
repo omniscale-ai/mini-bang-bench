@@ -1,0 +1,25 @@
+{
+  "id": "flow_lenia",
+  "simulator_version": "1",
+  "description": "Flow Lenia JAX simulator with artifact-backed parameter selection",
+  "factory": "mini_bang.simulators.flow_lenia.factory:create_flow_lenia_macro",
+  "response_builder": "mini_bang.simulators.flow_lenia.response:flow_lenia_response_builder",
+  "aggregator": "mini_bang.execution.aggregator:LegacyTrajectoryAggregator",
+  "grouped_sampling_safe": false,
+  "metadata": {
+    "supports": [
+      "normalized_saturation",
+      "nearest_checkpoint",
+      "generic_artifact_refs",
+      "state_initialization",
+      "sparse_field_snapshots"
+    ],
+    "domain": [
+      "artificial_life",
+      "flow_lenia"
+    ],
+    "requires": [
+      "jax"
+    ]
+  }
+}

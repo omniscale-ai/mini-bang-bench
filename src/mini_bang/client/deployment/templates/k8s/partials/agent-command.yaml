@@ -1,0 +1,1 @@
+          command: ["python", "-m", "mini_bang.agent_runtime"]

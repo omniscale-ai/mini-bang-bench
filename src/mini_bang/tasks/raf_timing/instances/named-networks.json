@@ -1,0 +1,89 @@
+{
+  "instance_id": "named-networks",
+  "instance_version": "1",
+  "split": "test",
+  "description": "Estimate first-appearance distributions for a fixed RAF saturation.",
+  "instructions": "Estimate distributions of FIRST OBSERVED positive concentration on the published snapshot grid. Events invisible between grid snapshots are not scored as observed appearances. The test networks are named timing-test-net-01, timing-test-net-02 and timing-test-net-03. Address a test network by its name: macro_params={\"network\": name} (or the argument network=name). Test networks are served from recorded rollouts (observation pool timing-test-networks): 27 rollouts per test network at saturation 12, given as an integer, observed at any of the ten grid times; their macro seeds are not part of the benchmark. Rollout i of a test network is always the same recorded rollout: runs=n returns rollouts 0..n-1 at the requested grid times, and sample_params.seed is not available for test networks. Budget: 27 distinct rollouts in the session (9 per test network if spread evenly), 18 requests of at most 3 published snapshot values each and 36000000 work units. A rollout is one micro trajectory: run index i of one network (a test network name, or a macro seed of your choice, and size) with one base seed (sample_params.seed on a network of your own choice, or the network's own default when it is omitted). Requesting the same runs at other snapshot times observes the same trajectories and costs requests and work but no rollouts, so every rollout can be observed at all ten grid times in four requests; each observation reports the counts of all species. Rollouts on networks of your own choice (any macro_params.seed) are allowed and come from the same budget; there the sample seed controls independent micro trajectories. Return {'distributions': {network_name: {target_species: {snapshot_or_none: probability}}}}. Interventions (micro_params.max_raf, micro_params.prune_catalysts) are not available. Score: L is the average log-likelihood gap between the hidden empirical first-hit distributions (3840 hidden rollouts per network, independent of the recorded rollouts) and the submitted ones; the primary score is 1 - (L - 0.0024127) / (0.1674005 - 0.0024127), clipped to [0, 1]. 0.0024127 is the loss of an independent reference distribution from 3840 rollouts per network, 0.1674005 the mean loss of the best counting estimator (add-1/2 frequencies smoothed over neighbouring grid times and shrunk toward the pooled shape, strengths chosen by leave-one-run-out) from 9 rollouts per network. Counting therefore scores about 0 and an exact model of each network about 1. The raw loss and both anchors are reported.",
+  "metadata": {
+    "category": "Temporal Distribution Estimation",
+    "validation": {
+      "metric": "skill_vs_cheap_counting",
+      "reference_loss": 0.0024127,
+      "cheap_loss": 0.1674005,
+      "min_score": 0.5
+    },
+    "api_limits": {
+      "max_generate_calls": 18,
+      "max_rollouts_per_session": 27,
+      "max_reaction_event_work_units_per_session": 36000000
+    },
+    "primary_metric": "skill_vs_cheap_counting",
+    "primary_metric_direction": "higher_is_better"
+  },
+  "visible": {
+    "simulator_id": "raf",
+    "macro_params": {
+      "M0": 2,
+      "K": 3,
+      "p": 0.15,
+      "complexity": 0.5,
+      "alpha": {
+        "kind": "linear_cutoff",
+        "scale": 0.05,
+        "cutoff": 3,
+        "floor": 0.0
+      },
+      "k_lig": 1.0,
+      "k_unlig": 0.05,
+      "step_limit": 50000
+    },
+    "seed_roles": {
+      "macro_params.network": "public name of a test network, served from recorded rollouts",
+      "macro_params.seed": "network topology and catalysis of a network of your own choice",
+      "sample_params.seed": "base for planner-derived independent micro rollout seeds of a network of your own choice; not available for recorded test objects",
+      "runs": "independent micro trajectories on the same macro network; never independent RAF labels"
+    },
+    "saturation": 12,
+    "snapshot_times": [
+      0.001,
+      0.002,
+      0.005,
+      0.01,
+      0.02,
+      0.05,
+      0.1,
+      0.2,
+      0.5,
+      1.0
+    ],
+    "target_species": {
+      "timing-test-net-01": [
+        "3",
+        "7",
+        "8",
+        "11"
+      ],
+      "timing-test-net-02": [
+        "4",
+        "6",
+        "7",
+        "11"
+      ],
+      "timing-test-net-03": [
+        "5",
+        "6",
+        "8",
+        "9"
+      ]
+    },
+    "gold_sampling": "Exactly the published ten-point observation grid; 3840 independent heldout micro rollouts per test network",
+    "first_hit_semantics": "first observed positive count on the published grid, not an unobserved inter-snapshot event",
+    "allowed_interventions": [],
+    "test_networks": [
+      "timing-test-net-01",
+      "timing-test-net-02",
+      "timing-test-net-03"
+    ],
+    "observation_pool": "timing-test-networks"
+  }
+}

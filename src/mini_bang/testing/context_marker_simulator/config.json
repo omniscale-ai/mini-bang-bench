@@ -1,0 +1,6 @@
+{
+  "id": "context_marker_test",
+  "description": "Test-only runtime context marker simulator",
+  "factory": "mini_bang.testing.context_marker_simulator.factory:create_macro",
+  "grouped_sampling_safe": true
+}

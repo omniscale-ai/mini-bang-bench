@@ -1,0 +1,4 @@
+      volumes:
+        - name: payloads
+          persistentVolumeClaim:
+            claimName: mini-bang-payloads

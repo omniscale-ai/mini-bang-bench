@@ -1,0 +1,43 @@
+{
+  "task_id": "flow_lenia/discriminate",
+  "task_version": "1",
+  "description": "Detect Minibangs and Explain Why Apparent Transitions Are Not Minibangs\n\nA minibang is a temporal event in which the dynamics of the whole system changes qualitatively over a relatively short interval. It can simplify or enrich the dynamics. Interpret the dynamics through a biological-population intuition: distinguish species-like types of organisms and examine their behavior, interactions and collective organization. A qualitative change alters the system's repertoire of persistent types, their number or role, or the sustained way those populations move, interact or organize. This is an interpretive analogy, not a claim of real biological taxonomy or living organisms. Rendered color and total mass alone do not identify a type or determine whether its dynamics changed. The initial explosion and settling are outside the task: observations are available only from the human-annotated onset of established dynamics onward. Color change alone, a reversible fluctuation, or an isolated object's motion is insufficient. RGB shows only part of the state: object identity is not identical to rendered color. Time is in raw simulation steps; 3000 steps correspond to one video second. Intervals are half-open [start, end). The event start is the last moment of the previous established dynamics; the event end is the first moment of the next established dynamics. Established dynamics can include persistent motion and fluctuations: established does not mean motionless.",
+  "task_class": "mini_bang.tasks.flow_lenia_common.api:FlowLeniaTask",
+  "api_class": "mini_bang.tasks.flow_lenia_common.api:FlowLeniaAPI",
+  "policy_class": "mini_bang.tasks.flow_lenia_common.policy:FlowLeniaPolicy",
+  "scorer_class": "mini_bang.tasks.flow_lenia_common.source_authority:SourceAuthorityScorer",
+  "answer_format": "mini_bang.tasks.flow_lenia_common.answer_format:DISCRIMINATE",
+  "default_instance_id": "windows",
+  "metadata": {
+    "level": "1",
+    "level_scheme": "five levels of understanding"
+  },
+  "instance_variants": {},
+  "api": {
+    "max_generate_calls": 160,
+    "max_observed_states": 1024,
+    "max_observed_raw_steps": 8000000,
+    "max_states_per_request": 64,
+    "max_request_raw_steps": 180000,
+    "step_multiple": 100,
+    "allowed_fields": [
+      "rgb",
+      "A",
+      "P",
+      "F",
+      "Food"
+    ],
+    "instructions": "Return {\"predictions\": {case_id: {\"probability\": 0.5, \"reasons\": {\"reversible\": 0.0, \"recoloring\": 0.0, \"limited_scope\": 0.0, \"gradual_drift\": 0.0, \"no_transition\": 0.0}}}} with exactly one entry for every case_id. probability is p = P(minibang in the case). reasons gives, for each reason j, pi_j = P(reason j applies | no minibang in the case). Reasons: reversible means the change reverses; recoloring means apparent change without a new dynamic regime; limited_scope means a local/simple change without a qualitative system transition; gradual_drift means a continuous slow change; no_transition means nothing visibly happens in the case. no_transition is never combined with another reason: a case with any of the other four reasons does not have no_transition. reasons may also be a list of reason names, read as pi_j = 1 for every listed reason; a reason that is not given has pi_j = 0. Every probability must be a finite number in [0, 1]; an unknown or repeated reason name or a missing key makes the answer invalid. Each case defines one distribution over 33 outcomes: minibang with probability p, or no minibang with exactly the reason set S with probability (1-p)*prod_j(pi_j if j in S else 1-pi_j). Case score QS = 2*P(true outcome) - sum over the 33 outcomes of P^2; the true outcome is minibang for a minibang case and otherwise no minibang with exactly the case's reference reason set. Primary score = min(1, max(0, (mean QS - C)/(1 - C))), where C is the mean QS of the best answer that gives every case the same probability and the same reason probabilities; C is computed on the hidden reference answers and is not disclosed. Reporting honest probabilities maximizes the expected score. The unclipped score, the mean QS over all cases, over minibang cases and over cases without a minibang, the mean reason Brier score over cases without a minibang, balanced Brier skill and AUROC are reported separately."
+  },
+  "validation": {
+    "epsilon": 1e-06,
+    "max_intervals": 16,
+    "iou_threshold": 0.5
+  },
+  "scoring": {
+    "requires_services": false,
+    "requires_executable_runner": false,
+    "probability_metric": "joint_reason_probabilities_quadratic"
+  },
+  "source_authority_base_scorer_class": "mini_bang.tasks.flow_lenia_common.classification:DiscriminateScorer"
+}

@@ -1,0 +1,27 @@
+{
+  "task_id": "raf/signature",
+  "task_version": "1",
+  "task_class": "mini_bang.tasks.raf_signature.signature_task:RAFLevel4SignatureTask",
+  "api_class": "mini_bang.tasks.raf_signature.signature_api:RAFSignatureAPI",
+  "scorer_class": "mini_bang.tasks.raf_signature.scorer:RAFSignatureScorer",
+  "answer_format": "mini_bang.tasks.raf_common.answer_format:SIGNATURE",
+  "policy_class": "mini_bang.tasks.raf_signature.policy:RAFSignaturePolicy",
+  "default_instance_id": "named-networks",
+  "instance_variants": {
+    "dev": "dev"
+  },
+  "description": "Classify whether each listed test RAF network at each listed size is RAF. Direct is_raf queries (generate_samples(..., extras=[\"is_raf\"])) are allowed only for networks outside the test set. The instance states the test networks, labelled training networks, budget and score.",
+  "metadata": {
+    "level": "2",
+    "level_scheme": "five levels of understanding",
+    "category": "Signature Recognition",
+    "benchmark": "mini-bang"
+  },
+  "validation": {
+    "min_macro_f1": 0.4,
+    "epsilon": 1e-06
+  },
+  "api": {
+    "max_generate_calls": 50
+  }
+}

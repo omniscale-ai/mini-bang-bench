@@ -1,0 +1,192 @@
+{
+  "format": "mini_bang.raf_recorded_observations.v1",
+  "name": "signature-dev-networks",
+  "description": "Networks at their listed size: the full-horizon run limit of one request, ten grid times. RAF labels are the gold and are not recorded.",
+  "snapshot_times": [
+    0.001,
+    0.002,
+    0.005,
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.2,
+    0.5,
+    1.0
+  ],
+  "address": {
+    "group": "network"
+  },
+  "sequences": false,
+  "groups": {
+    "signature-dev-net-01": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-02": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-03": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-04": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-05": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-06": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-07": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-08": {
+      "members": 1,
+      "rollouts_by_size": {
+        "6": 100
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-09": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-10": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-11": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-12": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-13": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-14": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-15": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-16": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 53
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-17": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-18": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-19": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-20": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-21": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-22": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-23": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    },
+    "signature-dev-net-24": {
+      "members": 1,
+      "rollouts_by_size": {
+        "30": 21
+      },
+      "is_raf": false
+    }
+  },
+  "arrays": "signature-dev-networks.npz"
+}

@@ -1,0 +1,54 @@
+name: mini-bang
+services:
+  # Named volumes start root-owned; the runner itself runs as UID 10001.
+  runner-state-permissions:
+    image: $worker_image
+    user: "0:0"
+    entrypoint: ["chown", "10001:10001", "/state", "/payloads"]
+    network_mode: none
+    volumes:
+      - mini_bang_state:/state
+      - mini_bang_payloads:/payloads
+
+  # The official runner of the k8s/pool path: /v1 API, task policy, budgets,
+  # local executor and scoring of submissions.
+  runner:
+    image: $worker_image
+    user: "10001:10001"
+    command: ["python", "-m", "mini_bang.client.cli.official_runner", "--host", "0.0.0.0", "--port", "$runner_port"]
+    depends_on:
+      runner-state-permissions:
+        condition: service_completed_successfully
+$runner_dependencies
+    ports:
+      - "127.0.0.1:$runner_port:$runner_port"
+    environment:
+      MINI_BANG_MODE: compose-local
+      # Empty values come from the operator shell (`mini-bang compose up` requires it).
+      MINI_BANG_RUNNER_ADMIN_TOKEN:
+      MINI_BANG_BACKEND: local
+      MINI_BANG_EXECUTION_ENGINE: process_pool
+      MINI_BANG_WORKERS: "$executor_workers"
+      MINI_BANG_OBSERVATION_RECEIPTS_DIR: /state/observations
+      MINI_BANG_SCORING_RECEIPTS_DIR: /state/scoring
+      MINI_BANG_RESULT_STORE: filesystem
+      MINI_BANG_RESULT_DIR: /state/results
+      MINI_BANG_PAYLOAD_MODE: auto
+      MINI_BANG_PAYLOAD_STORE: $payload_store
+      MINI_BANG_PAYLOAD_DIR: /payloads/runtime
+$payload_environment
+    volumes:
+      - mini_bang_state:/state
+      - mini_bang_payloads:/payloads
+    networks:
+      - default
+      - agent-boundary
+$minio_services$agent_service
+networks:
+  # Internal: members reach each other only, never the host or the internet.
+  agent-boundary:
+    internal: true
+volumes:
+  mini_bang_state:
+  mini_bang_payloads:
+$extra_volumes

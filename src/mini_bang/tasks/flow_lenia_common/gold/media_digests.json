@@ -1,0 +1,402 @@
+{
+  "traj_00000": {
+    "sha256": "6d8ff0af3f781eeee17ecf9aad57718a6333e14469dd4fea2533839be89d93fa",
+    "size_bytes": 53378594
+  },
+  "traj_00001": {
+    "sha256": "3485caf0ae867826845d56aa1146bd2d8c4f719e8f6b9ebf1413cb79ccda4a04",
+    "size_bytes": 29922772
+  },
+  "traj_00002": {
+    "sha256": "b4048857ff5e664f6b6fb46d4300ac1a8ecea6de1387cd25374ceb24ee3d61bd",
+    "size_bytes": 19096941
+  },
+  "traj_00003": {
+    "sha256": "fa21a9a4c97398ae4480397574ab568cd31b69eab91f5bdb3089a76a5bbe77bc",
+    "size_bytes": 32589501
+  },
+  "traj_00004": {
+    "sha256": "f4be38e674c3e71110b12eda0bdfa7df0718b8a8f503726ce199593a0582fc60",
+    "size_bytes": 68031390
+  },
+  "traj_00005": {
+    "sha256": "bf425d89c759405eaf1b20680f5518d233549dd91824b9644c427ba7c8b5cc69",
+    "size_bytes": 30950600
+  },
+  "traj_00006": {
+    "sha256": "5e1074b839f04fb52d151467d91444cab30ee3d19b096f8d241de4211c06a923",
+    "size_bytes": 24257422
+  },
+  "traj_00007": {
+    "sha256": "a7d1a3d7ed652fa9e413d9736e5bf2031e18349d1d77d8682531262cb78817dc",
+    "size_bytes": 27488792
+  },
+  "traj_00008": {
+    "sha256": "da80e14ff352c729855ae286a43f25afe52cf5f31e1de844ae8729e86734de9f",
+    "size_bytes": 45980206
+  },
+  "traj_00009": {
+    "sha256": "42ffca35ffc88a6fef8d0cdb1f904950bfefbec5773e1ce0e7ebf6471258b14b",
+    "size_bytes": 34971427
+  },
+  "traj_00010": {
+    "sha256": "67073a7a8bba796b896df2928840ff552f9a0f0326e24a460bfd35575f44e5f9",
+    "size_bytes": 27537491
+  },
+  "traj_00011": {
+    "sha256": "c6f826ce39f68760a0bef458086e7500b0061b79b32041ffc3bcf4e0d542632e",
+    "size_bytes": 24152908
+  },
+  "traj_00012": {
+    "sha256": "1dab6e70ce80f0b0074c01dc05442a4fde9c5ab24cc2f9090bcb1bb57fc670d2",
+    "size_bytes": 46006719
+  },
+  "traj_00013": {
+    "sha256": "165371cbdd75517b0cae2025dc92d1e4094973848d44e3ca7242efa91b39f689",
+    "size_bytes": 34815833
+  },
+  "traj_00014": {
+    "sha256": "3a5cb04784cc450f184770e8f0308012baaaf2ddc8e53ceda3f8863c00bbe367",
+    "size_bytes": 16451853
+  },
+  "traj_00015": {
+    "sha256": "fc7812ebfa7596a2e8c004849b51ac9ba640993b52c96055504a881b2b9c2399",
+    "size_bytes": 48110915
+  },
+  "traj_00016": {
+    "sha256": "17a5c4254bc997838e08a8ea0f00d370a6c11a5ac738f58660ef924ec50a0902",
+    "size_bytes": 20449152
+  },
+  "traj_00017": {
+    "sha256": "b4f781c5a52c612096690ad4ecb0b30bb72dd669977047926db7f9ae48a387fc",
+    "size_bytes": 37383250
+  },
+  "traj_00018": {
+    "sha256": "2a26ffb8a6caf285c66d4060bc5df1a1a89d4a69257bd271a7114ec979e66200",
+    "size_bytes": 20846901
+  },
+  "traj_00019": {
+    "sha256": "c7eab3a4931bc54098a4603e32616ea0d631e7c9b25191fbfb9adf8b4a6b8886",
+    "size_bytes": 46688789
+  },
+  "traj_00020": {
+    "sha256": "4563fdf26b21652cde74f27a63c9465a2dbe1e6be7e636219777d40f5fe42251",
+    "size_bytes": 40301096
+  },
+  "traj_00021": {
+    "sha256": "8fec1cfeed9291e41166efd507a0ed1d40cea1758484057c134e3b6857fe0e6b",
+    "size_bytes": 60143411
+  },
+  "traj_00022": {
+    "sha256": "1e66cc0769cf462196d4906930cb1db35854d7aaf4392d3cd5cd3d32f02bb247",
+    "size_bytes": 40975916
+  },
+  "traj_00023": {
+    "sha256": "fa8051e21fd8fb5c2f90a89e1e38b01052de88e2423053d602240ed2e725fb41",
+    "size_bytes": 63713382
+  },
+  "traj_00024": {
+    "sha256": "f18c7e997baf7605b83e286cc5d258610fc21eed7c566698b800907d113f0a01",
+    "size_bytes": 37443141
+  },
+  "traj_00025": {
+    "sha256": "ca041423e49799ae88fdd443af4eff26e2889a860fc8077b1a6b43c584e3dccc",
+    "size_bytes": 53336173
+  },
+  "traj_00026": {
+    "sha256": "ae7a618989949c68dc91f898695ab1622540f233030ce33afdd112fea171569c",
+    "size_bytes": 39663337
+  },
+  "traj_00027": {
+    "sha256": "c467bea5da49d786dc094735af9a25d913158d6c71417a46a7c760284ab96c73",
+    "size_bytes": 69493615
+  },
+  "traj_00028": {
+    "sha256": "f969bf2f3a6e7fb5424f63f28cad7380eb7a1eea00291a1ad110ced75ae80544",
+    "size_bytes": 31180346
+  },
+  "traj_00029": {
+    "sha256": "79627b9ee0eebba3553b4519698969ab09e38dd4ce0c70d292581ec8503910c2",
+    "size_bytes": 52443382
+  },
+  "traj_00030": {
+    "sha256": "c68e937ccba9349dddf91645261143fdf89b1b4df236dbb41a64895e1b2c3c55",
+    "size_bytes": 32040327
+  },
+  "traj_00031": {
+    "sha256": "db9e2352012d7224283d37fb147e38ca4d56cdb90410d76567afdf576cb5c346",
+    "size_bytes": 24838088
+  },
+  "traj_00032": {
+    "sha256": "b20485e727d25c13d2f679dc9f44923559c03242da26810e5ad64fd7945ffc6d",
+    "size_bytes": 58175803
+  },
+  "traj_00033": {
+    "sha256": "8b48c2e6c7e63158991e7fe28c2c4b0f34eaf21d0d2b63ccdedcca659e07866d",
+    "size_bytes": 38489014
+  },
+  "traj_00034": {
+    "sha256": "a5683b8aaac605bdafdcf5a4660c788a2ccc2cf24ca98e00d16a70cf717bc043",
+    "size_bytes": 38248374
+  },
+  "traj_00035": {
+    "sha256": "7cf3d61cea12903e47c22c8847f6131b76e676bc45ddd05195b7f6e1628fb7ee",
+    "size_bytes": 53372408
+  },
+  "traj_00036": {
+    "sha256": "6ba9282843e0c2dd0d6a6b8d96576296d5ff1d4af01b271b5efcecd4bbda1b88",
+    "size_bytes": 15321359
+  },
+  "traj_00037": {
+    "sha256": "e81917a5878d6814004d9245821ee66f183a10f9956a78f04c155ec84e078638",
+    "size_bytes": 52330249
+  },
+  "traj_00038": {
+    "sha256": "27386bc1e3c304eb102dd6063d1f3d9245d55436a062ceb83c525ed35a5f37ff",
+    "size_bytes": 20183828
+  },
+  "traj_00039": {
+    "sha256": "e9bc92c442f70e90a9c61af4f72760319cd6e11272fa436367eb43a4ce7b2357",
+    "size_bytes": 28170846
+  },
+  "traj_00040": {
+    "sha256": "ab6b49dfd042260f05bd3ce711f9a30c1390fb52bd8ad237a216e7f74d9a49db",
+    "size_bytes": 71984243
+  },
+  "traj_00041": {
+    "sha256": "b2146ab6c7d1d8aadd78f0e1dabcfe274efe929a9d5671a692a6666c0e2f7438",
+    "size_bytes": 39438000
+  },
+  "traj_00042": {
+    "sha256": "e800fe7ec1d661d7957b44eae7d31c17c691399932a6c9031553991c7ef6357b",
+    "size_bytes": 42803454
+  },
+  "traj_00043": {
+    "sha256": "74223a562d13d50471ba55a23c5812d8878ea0e869c832c6424069fd1151acdb",
+    "size_bytes": 37763095
+  },
+  "traj_00044": {
+    "sha256": "5c4624776ac31be4a681d8f1cbdaecead288baeed85c0a664d8483ea6c7d21aa",
+    "size_bytes": 61717497
+  },
+  "traj_00045": {
+    "sha256": "6e3297cbcf42afefc8d8602c3037dceeca7f13849122506c00ad65eb21be3324",
+    "size_bytes": 38274516
+  },
+  "traj_00046": {
+    "sha256": "a76b48a3e8d6efa9dc282dfdf3254cae7ba4d4d8771897b351f44f3ec971cdbe",
+    "size_bytes": 30307392
+  },
+  "traj_00047": {
+    "sha256": "62de3cae4994a2308df6c05fba8c6fe814a76fb332f69f2a4ba4b78db391aa1d",
+    "size_bytes": 35301594
+  },
+  "traj_00048": {
+    "sha256": "568d2287f32803bc9dd228aa2f49ddfaf21db27546d333c6688b86416c4ac7b9",
+    "size_bytes": 27517816
+  },
+  "traj_00049": {
+    "sha256": "ed0ab69d96004c45bb02970ade31a662373ab2654f294c48b28de7a99f2def31",
+    "size_bytes": 36450602
+  },
+  "traj_00050": {
+    "sha256": "ef1d5ec9619ef89f4f58a99735ce9f65123a900749aaf3ed86a5b8a598888775",
+    "size_bytes": 23966163
+  },
+  "traj_00051": {
+    "sha256": "d8c6a123890ad8a8b7124b38f90584298738aa77a22f7c2cf424e067c4256355",
+    "size_bytes": 55679214
+  },
+  "traj_00052": {
+    "sha256": "fbfc8ae78a3bb832b8af2859ea3a8d1f2cd8946afd74fd95766f8673cd81b0d0",
+    "size_bytes": 34637967
+  },
+  "traj_00053": {
+    "sha256": "9f66c7f76620e89e2a3d822899d7d001995ad75250f1a68caae4a1e363362801",
+    "size_bytes": 28755820
+  },
+  "traj_00054": {
+    "sha256": "845a8e514e38ea4c36fe7effdd7b8db8784ab39a6e1c4ac022778822992cc645",
+    "size_bytes": 48995926
+  },
+  "traj_00055": {
+    "sha256": "42253c2ba6a5ba02b7de5bbc0e87e49103dd229a2e6260c0489e18e8afcf6e7e",
+    "size_bytes": 39447869
+  },
+  "traj_00056": {
+    "sha256": "979b68ac3a44bc51e66387b1054d599e0259d203ca9b127ce9aaff62708d88c7",
+    "size_bytes": 26215361
+  },
+  "traj_00057": {
+    "sha256": "d418baea6b99be9b21af12e9f31720d9a4bf9ee9479a1ac4e92cc2f88cc55fe9",
+    "size_bytes": 49160282
+  },
+  "traj_00058": {
+    "sha256": "594beba41e0e670e0c3e9168d015d0e61dbd348e77d32fb20fdd316a36977efd",
+    "size_bytes": 36868620
+  },
+  "traj_00059": {
+    "sha256": "953c6ae44b01177e6641372d6455e912cd4cbf758f1a4cd368cc7dba73904b53",
+    "size_bytes": 34962880
+  },
+  "traj_00060": {
+    "sha256": "d9e1b673a8fb40eff472822cfac4b937c8319e782529336591453175ca4e1ba1",
+    "size_bytes": 23559354
+  },
+  "traj_00061": {
+    "sha256": "7be34bbae4ad7b85abc8579995e04610ef4d5eaa622507173721aa71e498512d",
+    "size_bytes": 51093303
+  },
+  "traj_00062": {
+    "sha256": "711daa89d100a684ab3b60720784d0f0cdfb5498091223174d0a2a584f053f64",
+    "size_bytes": 40014573
+  },
+  "traj_00063": {
+    "sha256": "3a10cd297eefbae083f7631a65c03c0e8d8dbde7a866274449aa9eb4dd18f3e0",
+    "size_bytes": 46220032
+  },
+  "traj_00064": {
+    "sha256": "3c525595ca53ce92a11980caf9bd0504a1b39312c32545d09d29c8b171a285a8",
+    "size_bytes": 45221202
+  },
+  "traj_00065": {
+    "sha256": "791c1579bb709d251298df660f7c1698bd5393f765105314ddfd4d339a775df6",
+    "size_bytes": 36614647
+  },
+  "traj_00066": {
+    "sha256": "990b79eaea5677198ad1252fe8b40a2a666c04733534c2b20f7df991c6689c55",
+    "size_bytes": 28411984
+  },
+  "traj_00067": {
+    "sha256": "0ff9bdcae5c24e0721df193e68144e8f0ce8eeefae0b32bd1fc86a4bf46c6ae8",
+    "size_bytes": 32810208
+  },
+  "traj_00068": {
+    "sha256": "a635d23463f1735d76c4bb9817940d3f9533322fe248c9d0f621c47ccf3fc10d",
+    "size_bytes": 50540728
+  },
+  "traj_00069": {
+    "sha256": "42480c81ede0f835589cc9e0f27e9e0262625aa0ded04f5f9dd42ad4b50f9a40",
+    "size_bytes": 33234362
+  },
+  "traj_00070": {
+    "sha256": "d0245e0071c558ab86134d8d2272b50ecafb0008ad6ff2658a194e31ab9ee3b6",
+    "size_bytes": 43886989
+  },
+  "traj_00071": {
+    "sha256": "df48b4fecb15974d9ed597ffa5225d34d33be6c31e4d1ebc971eae1c64a5ba32",
+    "size_bytes": 42395527
+  },
+  "traj_00072": {
+    "sha256": "a32398022a73ffec54173089026b7bb038c012cc136d738da739524a6eb3c8bf",
+    "size_bytes": 38938935
+  },
+  "traj_00073": {
+    "sha256": "cd65d364e7a383d3d6c23a5be4a5370bb9911eac33a62b675f315692b92779fb",
+    "size_bytes": 40522346
+  },
+  "traj_00074": {
+    "sha256": "a047a71ffd25ada8eb46503c2ee0dad4eaa11329d4bc21c4b8f76fd95df51646",
+    "size_bytes": 40966144
+  },
+  "traj_00075": {
+    "sha256": "0dd089197c7d5c34a7d8d1145ef12f816444183e52ff64dba208274abaf1843b",
+    "size_bytes": 42322401
+  },
+  "traj_00076": {
+    "sha256": "86ac327a251a784c1021d6b8fd926bb8559a638ff2d29341da9f541a408e52bf",
+    "size_bytes": 37734743
+  },
+  "traj_00077": {
+    "sha256": "f8b43cfab2867ebb1555ffee5243b6e4d923ce767bbaa242647e5a1001e7b5c0",
+    "size_bytes": 43946101
+  },
+  "traj_00078": {
+    "sha256": "34822a6b61e0c89a917a7823d7030dce8b44b8ae606ddefefaec028568ab77f1",
+    "size_bytes": 27027740
+  },
+  "traj_00079": {
+    "sha256": "16f04434b9b5fffc72439e93cdedc1d73e9c9867e5e4c6caa3f8dcb8a2188835",
+    "size_bytes": 51089554
+  },
+  "traj_00080": {
+    "sha256": "e440bf0dfc99816af56d1ff5b189368929edc51cbdf7e6a446a989afb434e563",
+    "size_bytes": 36243787
+  },
+  "traj_00081": {
+    "sha256": "0290f04749c0daa606112cf29a8147dc62bba4d5f37e8700be9d5b44cb32cc4e",
+    "size_bytes": 32810468
+  },
+  "traj_00082": {
+    "sha256": "3343da3089e12b4a7145325caf02cb458dea482742da0c185e0112240ba3bdc2",
+    "size_bytes": 61362797
+  },
+  "traj_00083": {
+    "sha256": "c6142cba15c722b5a76b5da14414a473ed49ed3d2f5c45f04c4bf8b640a6ce69",
+    "size_bytes": 42193771
+  },
+  "traj_00084": {
+    "sha256": "0fddc74225652353b16ea45623c2863c90d24f1d7f0059d4a5cae127d6382238",
+    "size_bytes": 14039953
+  },
+  "traj_00085": {
+    "sha256": "69daefad312338f5d82ccb8184cf6159599612b6a48216fdd7cb438bd432bbe9",
+    "size_bytes": 72120272
+  },
+  "traj_00086": {
+    "sha256": "492f456850cd2ae201df91362759a0a070450c6c07d5b0d8441283a68a2fa56a",
+    "size_bytes": 61958245
+  },
+  "traj_00087": {
+    "sha256": "3085dc5f05739e9d81648ac39dd7bb48857c29f06980c4f28fedbb2b91295d18",
+    "size_bytes": 42663446
+  },
+  "traj_00088": {
+    "sha256": "95c1ae813c8fbec5e698686484548766a73bc3e1fdd22ce64ae170041038e92d",
+    "size_bytes": 44823492
+  },
+  "traj_00089": {
+    "sha256": "671358d3f9e763578bbbce7c5d85a3f3b073aaededb3bd7885835b441ff797dc",
+    "size_bytes": 28526325
+  },
+  "traj_00090": {
+    "sha256": "f3339b07711b9e99f36861bd4f53d7a4c9a89b35a380cb9663ce0f052189bc8d",
+    "size_bytes": 28234285
+  },
+  "traj_00091": {
+    "sha256": "059928371b7025db80edceb08ece29e3bc7c85afad2aecb790101ebc6acc280e",
+    "size_bytes": 34673637
+  },
+  "traj_00092": {
+    "sha256": "62df2ca3f81203b4f63664b21ae5ed683a1f429beaf15a2a27b392d2e1bd0896",
+    "size_bytes": 46333734
+  },
+  "traj_00093": {
+    "sha256": "c6fabca62722888e7f354b6d675b326b23fa84d40d38bffb72bebcf16ffef9d7",
+    "size_bytes": 63651935
+  },
+  "traj_00094": {
+    "sha256": "918f1434dc43dfcfab5acc0ff5fd06044a94485f1bb6d56fb4af328148b06277",
+    "size_bytes": 38305642
+  },
+  "traj_00095": {
+    "sha256": "134c73d2f937927cbe3a1bc21ef1758be81825f93b97965e44dfbc4bcf681748",
+    "size_bytes": 26777282
+  },
+  "traj_00096": {
+    "sha256": "09b5a38d3d8cbac92fe63ddb1b084b968a2b5bbab3b5e8934a971b771c1b53d8",
+    "size_bytes": 42321975
+  },
+  "traj_00097": {
+    "sha256": "08ec7a8771bf219fbd0200ea258cb2ca603d7f7549b83bba9c4f16c223c15e1f",
+    "size_bytes": 36905732
+  },
+  "traj_00098": {
+    "sha256": "a9aa89df0b9ca53cc7411cca69b75f6d49f344f2256eded37907c95edcbde092",
+    "size_bytes": 56207486
+  },
+  "traj_00099": {
+    "sha256": "e742b05023b4d21cc5c7c93acf80073bc9a1c237624e7bd8f84015691427a798",
+    "size_bytes": 38964291
+  }
+}

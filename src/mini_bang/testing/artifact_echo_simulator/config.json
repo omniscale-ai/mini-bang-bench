@@ -1,0 +1,6 @@
+{
+  "id": "artifact_echo_test",
+  "description": "Test-only artifact echo simulator",
+  "factory": "mini_bang.testing.artifact_echo_simulator.factory:create_macro",
+  "grouped_sampling_safe": true
+}

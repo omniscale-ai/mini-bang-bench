@@ -1,0 +1,459 @@
+{
+  "instance_version": "1",
+  "localization_metric": "chance_adjusted_soft_f1_offset_or_edge_chance_clipped_at_zero",
+  "inside_point_windows": "all_windows",
+  "description": "Find the Boundaries of the Minibang Containing a Given Point, or Report No Minibang\n\nA minibang is a temporal event in which the dynamics of the whole system changes qualitatively over a relatively short interval. It can simplify or enrich the dynamics. Interpret the dynamics through a biological-population intuition: distinguish species-like types of organisms and examine their behavior, interactions and collective organization. A qualitative change alters the system's repertoire of persistent types, their number or role, or the sustained way those populations move, interact or organize. This is an interpretive analogy, not a claim of real biological taxonomy or living organisms. Rendered color and total mass alone do not identify a type or determine whether its dynamics changed. The initial explosion and settling are outside the task: observations are available only from the human-annotated onset of established dynamics onward. Color change alone, a reversible fluctuation, or an isolated object's motion is insufficient. RGB shows only part of the state: object identity is not identical to rendered color. Time is in raw simulation steps; 3000 steps correspond to one video second. Intervals are half-open [start, end). The event start is the last moment of the previous established dynamics; the event end is the first moment of the next established dynamics. Established dynamics can include persistent motion and fluctuations: established does not mean motionless.",
+  "visible": {
+    "time_unit": "raw_step",
+    "mode": "inside_point",
+    "cases": [
+      {
+        "case_id": "window-001__steps-262600-433800",
+        "t1": 262600,
+        "t2": 433800,
+        "observation_window": [
+          262600,
+          433800
+        ],
+        "inside_t": 336568
+      },
+      {
+        "case_id": "window-002__steps-269600-454000",
+        "t1": 269600,
+        "t2": 454000,
+        "observation_window": [
+          269600,
+          454000
+        ],
+        "inside_t": 384574
+      },
+      {
+        "case_id": "window-003__steps-237100-499400",
+        "t1": 237100,
+        "t2": 499400,
+        "observation_window": [
+          237100,
+          499400
+        ],
+        "inside_t": 395704
+      },
+      {
+        "case_id": "window-004__steps-202400-425000",
+        "t1": 202400,
+        "t2": 425000,
+        "observation_window": [
+          202400,
+          425000
+        ],
+        "inside_t": 252517
+      },
+      {
+        "case_id": "window-005__steps-120200-224400",
+        "t1": 120200,
+        "t2": 224400,
+        "observation_window": [
+          120200,
+          224400
+        ],
+        "inside_t": 172486
+      },
+      {
+        "case_id": "window-006__steps-230000-494400",
+        "t1": 230000,
+        "t2": 494400,
+        "observation_window": [
+          230000,
+          494400
+        ],
+        "inside_t": 280013
+      },
+      {
+        "case_id": "window-007__steps-259700-442800",
+        "t1": 259700,
+        "t2": 442800,
+        "observation_window": [
+          259700,
+          442800
+        ],
+        "inside_t": 387390
+      },
+      {
+        "case_id": "window-008__steps-165200-260200",
+        "t1": 165200,
+        "t2": 260200,
+        "observation_window": [
+          165200,
+          260200
+        ],
+        "inside_t": 204082
+      },
+      {
+        "case_id": "window-009__steps-111500-216600",
+        "t1": 111500,
+        "t2": 216600,
+        "observation_window": [
+          111500,
+          216600
+        ],
+        "inside_t": 157867
+      },
+      {
+        "case_id": "window-010__steps-241100-443500",
+        "t1": 241100,
+        "t2": 443500,
+        "observation_window": [
+          241100,
+          443500
+        ],
+        "inside_t": 313287
+      },
+      {
+        "case_id": "window-011__steps-240800-498000",
+        "t1": 240800,
+        "t2": 498000,
+        "observation_window": [
+          240800,
+          498000
+        ],
+        "inside_t": 354316
+      },
+      {
+        "case_id": "window-012__steps-252700-404700",
+        "t1": 252700,
+        "t2": 404700,
+        "observation_window": [
+          252700,
+          404700
+        ],
+        "inside_t": 323489
+      },
+      {
+        "case_id": "window-013__steps-301500-463500",
+        "t1": 301500,
+        "t2": 463500,
+        "observation_window": [
+          301500,
+          463500
+        ],
+        "inside_t": 447378
+      },
+      {
+        "case_id": "window-014__steps-395700-485700",
+        "t1": 395700,
+        "t2": 485700,
+        "observation_window": [
+          395700,
+          485700
+        ],
+        "inside_t": 415577
+      },
+      {
+        "case_id": "window-015__steps-165000-372900",
+        "t1": 165000,
+        "t2": 372900,
+        "observation_window": [
+          165000,
+          372900
+        ],
+        "inside_t": 261132
+      },
+      {
+        "case_id": "window-016__steps-156700-383500",
+        "t1": 156700,
+        "t2": 383500,
+        "observation_window": [
+          156700,
+          383500
+        ],
+        "inside_t": 208183
+      },
+      {
+        "case_id": "window-017__steps-122000-214200",
+        "t1": 122000,
+        "t2": 214200,
+        "observation_window": [
+          122000,
+          214200
+        ],
+        "inside_t": 165288
+      },
+      {
+        "case_id": "window-018__steps-181200-326700",
+        "t1": 181200,
+        "t2": 326700,
+        "observation_window": [
+          181200,
+          326700
+        ],
+        "inside_t": 272686
+      },
+      {
+        "case_id": "window-019__steps-208700-375200",
+        "t1": 208700,
+        "t2": 375200,
+        "observation_window": [
+          208700,
+          375200
+        ],
+        "inside_t": 272827
+      },
+      {
+        "case_id": "window-020__steps-329800-487400",
+        "t1": 329800,
+        "t2": 487400,
+        "observation_window": [
+          329800,
+          487400
+        ],
+        "inside_t": 368750
+      },
+      {
+        "case_id": "window-021__steps-265300-411300",
+        "t1": 265300,
+        "t2": 411300,
+        "observation_window": [
+          265300,
+          411300
+        ],
+        "inside_t": 325633
+      },
+      {
+        "case_id": "window-022__steps-93500-282600",
+        "t1": 93500,
+        "t2": 282600,
+        "observation_window": [
+          93500,
+          282600
+        ],
+        "inside_t": 180782
+      },
+      {
+        "case_id": "window-023__steps-346200-496900",
+        "t1": 346200,
+        "t2": 496900,
+        "observation_window": [
+          346200,
+          496900
+        ],
+        "inside_t": 459596
+      },
+      {
+        "case_id": "window-024__steps-160900-279600",
+        "t1": 160900,
+        "t2": 279600,
+        "observation_window": [
+          160900,
+          279600
+        ],
+        "inside_t": 227847
+      },
+      {
+        "case_id": "window-025__steps-186100-415100",
+        "t1": 186100,
+        "t2": 415100,
+        "observation_window": [
+          186100,
+          415100
+        ],
+        "inside_t": 296730
+      },
+      {
+        "case_id": "window-026__steps-209600-430200",
+        "t1": 209600,
+        "t2": 430200,
+        "observation_window": [
+          209600,
+          430200
+        ],
+        "inside_t": 260929
+      },
+      {
+        "case_id": "window-027__steps-26100-154500",
+        "t1": 26100,
+        "t2": 154500,
+        "observation_window": [
+          26100,
+          154500
+        ],
+        "inside_t": 70642
+      },
+      {
+        "case_id": "window-028__steps-143900-271000",
+        "t1": 143900,
+        "t2": 271000,
+        "observation_window": [
+          143900,
+          271000
+        ],
+        "inside_t": 221318
+      },
+      {
+        "case_id": "window-029__steps-182400-387600",
+        "t1": 182400,
+        "t2": 387600,
+        "observation_window": [
+          182400,
+          387600
+        ],
+        "inside_t": 302654
+      },
+      {
+        "case_id": "window-030__steps-125300-358900",
+        "t1": 125300,
+        "t2": 358900,
+        "observation_window": [
+          125300,
+          358900
+        ],
+        "inside_t": 180138
+      },
+      {
+        "case_id": "window-031__steps-165400-296200",
+        "t1": 165400,
+        "t2": 296200,
+        "observation_window": [
+          165400,
+          296200
+        ],
+        "inside_t": 247286
+      },
+      {
+        "case_id": "window-032__steps-344900-465100",
+        "t1": 344900,
+        "t2": 465100,
+        "observation_window": [
+          344900,
+          465100
+        ],
+        "inside_t": 380372
+      },
+      {
+        "case_id": "window-033__steps-287100-498200",
+        "t1": 287100,
+        "t2": 498200,
+        "observation_window": [
+          287100,
+          498200
+        ],
+        "inside_t": 377684
+      },
+      {
+        "case_id": "window-034__steps-188800-404400",
+        "t1": 188800,
+        "t2": 404400,
+        "observation_window": [
+          188800,
+          404400
+        ],
+        "inside_t": 271660
+      },
+      {
+        "case_id": "window-035__steps-285000-492800",
+        "t1": 285000,
+        "t2": 492800,
+        "observation_window": [
+          285000,
+          492800
+        ],
+        "inside_t": 361390
+      },
+      {
+        "case_id": "window-036__steps-243800-472100",
+        "t1": 243800,
+        "t2": 472100,
+        "observation_window": [
+          243800,
+          472100
+        ],
+        "inside_t": 390830
+      },
+      {
+        "case_id": "window-037__steps-283400-499900",
+        "t1": 283400,
+        "t2": 499900,
+        "observation_window": [
+          283400,
+          499900
+        ],
+        "inside_t": 458197
+      },
+      {
+        "case_id": "window-038__steps-217500-339100",
+        "t1": 217500,
+        "t2": 339100,
+        "observation_window": [
+          217500,
+          339100
+        ],
+        "inside_t": 271966
+      },
+      {
+        "case_id": "window-039__steps-225100-462100",
+        "t1": 225100,
+        "t2": 462100,
+        "observation_window": [
+          225100,
+          462100
+        ],
+        "inside_t": 315937
+      },
+      {
+        "case_id": "window-040__steps-290900-424200",
+        "t1": 290900,
+        "t2": 424200,
+        "observation_window": [
+          290900,
+          424200
+        ],
+        "inside_t": 339587
+      },
+      {
+        "case_id": "window-041__steps-155200-261300",
+        "t1": 155200,
+        "t2": 261300,
+        "observation_window": [
+          155200,
+          261300
+        ],
+        "inside_t": 226184
+      },
+      {
+        "case_id": "window-042__steps-217900-347300",
+        "t1": 217900,
+        "t2": 347300,
+        "observation_window": [
+          217900,
+          347300
+        ],
+        "inside_t": 292775
+      },
+      {
+        "case_id": "window-043__steps-237200-499000",
+        "t1": 237200,
+        "t2": 499000,
+        "observation_window": [
+          237200,
+          499000
+        ],
+        "inside_t": 468652
+      },
+      {
+        "case_id": "window-044__steps-173900-337200",
+        "t1": 173900,
+        "t2": 337200,
+        "observation_window": [
+          173900,
+          337200
+        ],
+        "inside_t": 259267
+      }
+    ],
+    "observation_budget": {
+      "max_generate_calls": 880,
+      "max_observed_states": 5632,
+      "max_observed_raw_steps": 44000000
+    },
+    "stabilization_annotations_complete": true
+  },
+  "raw_step_budget_allocation": "duration_weighted"
+}

@@ -1,0 +1,89 @@
+{
+  "format": "mini_bang.raf_recorded_observations.v1",
+  "name": "probability-test-families",
+  "description": "Per family, the networks one session can address, at sizes 3..12: one rollout each at the ten grid times, and RAF labels.",
+  "snapshot_times": [
+    0.001,
+    0.002,
+    0.005,
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.2,
+    0.5,
+    1.0
+  ],
+  "address": {
+    "group": "family",
+    "member": "network_index"
+  },
+  "sequences": false,
+  "groups": {
+    "family-1": {
+      "members": 400,
+      "rollouts_by_size": {
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "10": 1,
+        "11": 1,
+        "12": 1
+      },
+      "is_raf": true
+    },
+    "family-2": {
+      "members": 400,
+      "rollouts_by_size": {
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "10": 1,
+        "11": 1,
+        "12": 1
+      },
+      "is_raf": true
+    },
+    "family-3": {
+      "members": 400,
+      "rollouts_by_size": {
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "10": 1,
+        "11": 1,
+        "12": 1
+      },
+      "is_raf": true
+    },
+    "family-4": {
+      "members": 400,
+      "rollouts_by_size": {
+        "3": 1,
+        "4": 1,
+        "5": 1,
+        "6": 1,
+        "7": 1,
+        "8": 1,
+        "9": 1,
+        "10": 1,
+        "11": 1,
+        "12": 1
+      },
+      "is_raf": true
+    }
+  },
+  "arrays": "probability-test-families.npz"
+}

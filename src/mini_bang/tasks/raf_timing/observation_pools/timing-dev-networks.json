@@ -1,0 +1,31 @@
+{
+  "format": "mini_bang.raf_recorded_observations.v1",
+  "name": "timing-dev-networks",
+  "description": "Networks at saturation 12: 9 rollouts each (the session rollout budget) at the ten grid times, and RAF labels.",
+  "snapshot_times": [
+    0.001,
+    0.002,
+    0.005,
+    0.01,
+    0.02,
+    0.05,
+    0.1,
+    0.2,
+    0.5,
+    1.0
+  ],
+  "address": {
+    "group": "network"
+  },
+  "sequences": false,
+  "groups": {
+    "timing-dev-net-01": {
+      "members": 1,
+      "rollouts_by_size": {
+        "12": 9
+      },
+      "is_raf": true
+    }
+  },
+  "arrays": "timing-dev-networks.npz"
+}

@@ -1,0 +1,102 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mini-bang-runner
+  namespace: $namespace
+  labels:
+    app: mini-bang-runner
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mini-bang-runner
+  template:
+    metadata:
+      labels:
+        app: mini-bang-runner
+        mini-bang-role: runner
+    spec:
+      serviceAccountName: mini-bang-runner
+      automountServiceAccountToken: false
+      securityContext:
+        runAsUser: 10001
+        runAsGroup: 10001
+        fsGroup: 10001
+      containers:
+        - name: runner
+          image: $worker_image
+          imagePullPolicy: IfNotPresent
+          command: ["python", "-m", "mini_bang.client.cli.official_runner"]
+          ports:
+            - containerPort: 8765
+              name: http
+          envFrom:
+            - configMapRef:
+                name: mini-bang-config
+            - secretRef:
+                name: mini-bang-runner-admin
+            - secretRef:
+                name: mini-bang-judge
+                optional: true
+$storage_secret_envfrom
+          env:
+            - name: MINI_BANG_K8S_NAMESPACE
+              value: $namespace
+            - name: MINI_BANG_K8S_WORKER_IMAGE
+              value: $worker_image
+            - name: MINI_BANG_K8S_SERVICE_ACCOUNT
+              value: mini-bang-executor
+            - name: MINI_BANG_K8S_MAX_PARALLEL_JOBS
+              value: "$executor_replicas"
+            - name: MINI_BANG_K8S_BATCH_CHUNK_SIZE
+              value: "1"
+            - name: MINI_BANG_POOL_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: mini-bang-pool-auth
+                  key: token
+            - name: MINI_BANG_POOL_AGENT_IMAGE
+              value: $agent_image
+            - name: MINI_BANG_POOL_RUNNER_URL
+              value: http://mini-bang-runner:8765
+            - name: MINI_BANG_OBSERVATION_RECEIPTS_DIR
+              value: /state/observations
+            - name: MINI_BANG_SCORING_RECEIPTS_DIR
+              value: /state/scoring
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8765
+            initialDelaySeconds: 2
+            periodSeconds: 5
+          resources:
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+            requests:
+              cpu: "250m"
+              memory: "1Gi"
+          volumeMounts:
+            - name: state
+              mountPath: /state
+$payload_volume_mount
+      volumes:
+        - name: state
+          persistentVolumeClaim:
+            claimName: mini-bang-runner-state
+$payload_volumes
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mini-bang-runner
+  namespace: $namespace
+spec:
+  selector:
+    app: mini-bang-runner
+  ports:
+    - name: http
+      port: 8765
+      targetPort: 8765

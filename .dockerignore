@@ -1,0 +1,15 @@
+.git
+workdir
+.pytest_cache
+.mypy_cache
+.ruff_cache
+.venv
+build
+data
+**/auth.json
+*.tar
+*.tar.gz
+*.tgz
+__pycache__
+*.pyc
+*.pyo

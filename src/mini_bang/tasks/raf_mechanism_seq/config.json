@@ -1,0 +1,45 @@
+{
+  "task_id": "raf/mechanism-seq",
+  "task_version": "1",
+  "task_class": "mini_bang.tasks.raf_mechanism_seq.sequence_task:RAFLevel5MechanismSequenceTask",
+  "api_class": "mini_bang.tasks.raf_mechanism_seq.sequence_api:RAFMechanismSequenceAPI",
+  "scorer_class": "mini_bang.tasks.raf_mechanism_seq.scorer:RAFMechanismSequenceScorer",
+  "answer_format": "mini_bang.tasks.raf_common.answer_format:CHAIN_QUANTILES",
+  "policy_class": "mini_bang.tasks.raf_mechanism_seq.policy:RAFMechanismSequencePolicy",
+  "default_instance_id": "named-chains",
+  "instance_variants": {
+    "dev": "dev"
+  },
+  "description": "Population fate: predict log-count quantiles along growing RAF chains. Each instance states its own design and score; the default instance forecasts each test chain's later sizes from its first size.",
+  "metadata": {
+    "level": "3",
+    "level_scheme": "five levels of understanding",
+    "category": "Mechanism Inference",
+    "benchmark": "mini-bang"
+  },
+  "validation": {
+    "quantiles": [
+      0.1,
+      0.5,
+      0.9
+    ],
+    "ema_tail_steps": 100,
+    "ema_decay": 0.95,
+    "max_pinball_loss": 0.75
+  },
+  "api": {
+    "max_generate_calls": 50,
+    "reserved_seed_ranges": {
+      "macro_params.seed": [
+        [
+          90000,
+          109999
+        ],
+        [
+          700000,
+          799999
+        ]
+      ]
+    }
+  }
+}

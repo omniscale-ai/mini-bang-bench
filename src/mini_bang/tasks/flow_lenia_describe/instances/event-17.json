@@ -1,0 +1,30 @@
+{
+  "instance_version": "1",
+  "description": "Describe Changes in System Dynamics Before, During and After a Minibang\n\nA minibang is a temporal event in which the dynamics of the whole system changes qualitatively over a relatively short interval. It can simplify or enrich the dynamics. Interpret the dynamics through a biological-population intuition: distinguish species-like types of organisms and examine their behavior, interactions and collective organization. A qualitative change alters the system's repertoire of persistent types, their number or role, or the sustained way those populations move, interact or organize. This is an interpretive analogy, not a claim of real biological taxonomy or living organisms. Rendered color and total mass alone do not identify a type or determine whether its dynamics changed. The initial explosion and settling are outside the task: observations are available only from the human-annotated onset of established dynamics onward. Color change alone, a reversible fluctuation, or an isolated object's motion is insufficient. RGB shows only part of the state: object identity is not identical to rendered color. Time is in raw simulation steps; 3000 steps correspond to one video second. Intervals are half-open [start, end). The event start is the last moment of the previous established dynamics; the event end is the first moment of the next established dynamics. Established dynamics can include persistent motion and fluctuations: established does not mean motionless.\n\nIn this description task, identity means a coherent visual or morphodynamic phenotype, not material continuity or an individual particle lineage. Distinguish individual coherent organisms from their visible parts and from species-like populations. Dynamics includes deformation as well as locomotion; follow any explicit specification that distinguishes shape change from translation. Persistent or ongoing activity describes a recurring established regime, unless the statement explicitly requires uninterrupted continuity or a quantitative condition. Preserve explicit numeric rates, comparisons, phase distinctions and the distinction between an organism body and a surrounding field.",
+  "visible": {
+    "time_unit": "raw_step",
+    "mode": "windows",
+    "cases": [
+      {
+        "case_id": "event-017__steps-162000-198000",
+        "t1": 162000,
+        "t2": 198000,
+        "observation_window": [
+          147000,
+          213000
+        ]
+      }
+    ],
+    "observation_budget": {
+      "max_generate_calls": 160,
+      "max_observed_states": 1024,
+      "max_observed_raw_steps": 8000000
+    },
+    "stabilization_annotations_complete": true,
+    "judge_version": "reviewed-distributed-spatial",
+    "rubric_version": "tiered-weights",
+    "reference_bundle_version": "tiered-weights",
+    "reference_authority_sha256": "0bca112d4688cf542829c2225f83b59b565a7341f4976e9149bc1227de0f45ba"
+  },
+  "raw_step_budget_allocation": "duration_weighted"
+}

@@ -1,0 +1,14 @@
+FROM python:3.13-slim
+
+WORKDIR /workspace
+COPY pyproject.toml README.md /workspace/
+COPY src /workspace/src
+# Optional dependencies of installed simulators and scorers (pyproject extras).
+ARG MINI_BANG_EXTRAS=s3,k8s,flow-lenia-scoring
+RUN pip install --no-cache-dir -e ".[${MINI_BANG_EXTRAS}]"
+RUN useradd --create-home --uid 10001 mini-bang \
+    && chown -R mini-bang:mini-bang /workspace
+USER 10001
+
+ENV PYTHONUNBUFFERED=1
+CMD ["python", "-m", "mini_bang.worker.k8s_worker"]

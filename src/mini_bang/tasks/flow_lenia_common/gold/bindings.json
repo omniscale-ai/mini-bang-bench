@@ -1,0 +1,200 @@
+{
+  "event-001__steps-115881-260882": {
+    "trajectory": "traj_00004"
+  },
+  "event-002__steps-315000-432081": {
+    "trajectory": "traj_00005"
+  },
+  "event-003__steps-180000-357831": {
+    "trajectory": "traj_00006"
+  },
+  "event-004__steps-45000-86331": {
+    "trajectory": "traj_00009"
+  },
+  "event-005__steps-180000-270000": {
+    "trajectory": "traj_00012"
+  },
+  "event-006__steps-197331-311331": {
+    "trajectory": "traj_00013"
+  },
+  "event-007__steps-345081-399081": {
+    "trajectory": "traj_00013"
+  },
+  "event-008__steps-285000-345000": {
+    "trajectory": "traj_00015"
+  },
+  "event-009__steps-228867-282831": {
+    "trajectory": "traj_00019"
+  },
+  "event-010__steps-361581-407331": {
+    "trajectory": "traj_00030"
+  },
+  "event-011__steps-458331-480831": {
+    "trajectory": "traj_00031"
+  },
+  "event-012__steps-135000-195000": {
+    "trajectory": "traj_00041"
+  },
+  "event-013__steps-255000-318000": {
+    "trajectory": "traj_00045"
+  },
+  "event-014__steps-180000-264000": {
+    "trajectory": "traj_00051"
+  },
+  "event-015__steps-360000-420000": {
+    "trajectory": "traj_00065"
+  },
+  "event-016__steps-270000-330000": {
+    "trajectory": "traj_00066"
+  },
+  "event-017__steps-162000-198000": {
+    "trajectory": "traj_00067"
+  },
+  "event-018__steps-270000-345000": {
+    "trajectory": "traj_00070"
+  },
+  "event-019__steps-240000-309000": {
+    "trajectory": "traj_00075"
+  },
+  "event-020__steps-240000-315000": {
+    "trajectory": "traj_00092"
+  },
+  "event-021__steps-435000-480000": {
+    "trajectory": "traj_00093"
+  },
+  "event-022__steps-315000-396000": {
+    "trajectory": "traj_00094"
+  },
+  "window-001__steps-262600-433800": {
+    "trajectory": "traj_00027"
+  },
+  "window-002__steps-269600-454000": {
+    "trajectory": "traj_00065"
+  },
+  "window-003__steps-237100-499400": {
+    "trajectory": "traj_00000"
+  },
+  "window-004__steps-202400-425000": {
+    "trajectory": "traj_00034"
+  },
+  "window-005__steps-120200-224400": {
+    "trajectory": "traj_00067"
+  },
+  "window-006__steps-230000-494400": {
+    "trajectory": "traj_00067"
+  },
+  "window-007__steps-259700-442800": {
+    "trajectory": "traj_00030"
+  },
+  "window-008__steps-165200-260200": {
+    "trajectory": "traj_00093"
+  },
+  "window-009__steps-111500-216600": {
+    "trajectory": "traj_00041"
+  },
+  "window-010__steps-241100-443500": {
+    "trajectory": "traj_00009"
+  },
+  "window-011__steps-240800-498000": {
+    "trajectory": "traj_00005"
+  },
+  "window-012__steps-252700-404700": {
+    "trajectory": "traj_00010"
+  },
+  "window-013__steps-301500-463500": {
+    "trajectory": "traj_00072"
+  },
+  "window-014__steps-395700-485700": {
+    "trajectory": "traj_00006"
+  },
+  "window-015__steps-165000-372900": {
+    "trajectory": "traj_00006"
+  },
+  "window-016__steps-156700-383500": {
+    "trajectory": "traj_00012"
+  },
+  "window-017__steps-122000-214200": {
+    "trajectory": "traj_00066"
+  },
+  "window-018__steps-181200-326700": {
+    "trajectory": "traj_00013"
+  },
+  "window-019__steps-208700-375200": {
+    "trajectory": "traj_00092"
+  },
+  "window-020__steps-329800-487400": {
+    "trajectory": "traj_00013"
+  },
+  "window-021__steps-265300-411300": {
+    "trajectory": "traj_00015"
+  },
+  "window-022__steps-93500-282600": {
+    "trajectory": "traj_00004"
+  },
+  "window-023__steps-346200-496900": {
+    "trajectory": "traj_00075"
+  },
+  "window-024__steps-160900-279600": {
+    "trajectory": "traj_00051"
+  },
+  "window-025__steps-186100-415100": {
+    "trajectory": "traj_00070"
+  },
+  "window-026__steps-209600-430200": {
+    "trajectory": "traj_00019"
+  },
+  "window-027__steps-26100-154500": {
+    "trajectory": "traj_00009"
+  },
+  "window-028__steps-143900-271000": {
+    "trajectory": "traj_00094"
+  },
+  "window-029__steps-182400-387600": {
+    "trajectory": "traj_00029"
+  },
+  "window-030__steps-125300-358900": {
+    "trajectory": "traj_00042"
+  },
+  "window-031__steps-165400-296200": {
+    "trajectory": "traj_00007"
+  },
+  "window-032__steps-344900-465100": {
+    "trajectory": "traj_00084"
+  },
+  "window-033__steps-287100-498200": {
+    "trajectory": "traj_00004"
+  },
+  "window-034__steps-188800-404400": {
+    "trajectory": "traj_00045"
+  },
+  "window-035__steps-285000-492800": {
+    "trajectory": "traj_00094"
+  },
+  "window-036__steps-243800-472100": {
+    "trajectory": "traj_00050"
+  },
+  "window-037__steps-283400-499900": {
+    "trajectory": "traj_00093"
+  },
+  "window-038__steps-217500-339100": {
+    "trajectory": "traj_00075"
+  },
+  "window-039__steps-225100-462100": {
+    "trajectory": "traj_00041"
+  },
+  "window-040__steps-290900-424200": {
+    "trajectory": "traj_00051"
+  },
+  "window-041__steps-155200-261300": {
+    "trajectory": "traj_00015"
+  },
+  "window-042__steps-217900-347300": {
+    "trajectory": "traj_00066"
+  },
+  "window-043__steps-237200-499000": {
+    "trajectory": "traj_00031"
+  },
+  "window-044__steps-173900-337200": {
+    "trajectory": "traj_00001"
+  }
+}

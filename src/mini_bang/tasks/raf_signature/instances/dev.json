@@ -1,0 +1,185 @@
+{
+  "instance_id": "dev",
+  "instance_version": "1",
+  "split": "dev",
+  "description": "Classify RAF signatures across saturation levels.",
+  "instructions": "Each size has 8 test networks selected as exactly 4 RAF and 4 non-RAF. The test networks are named signature-dev-net-01 to signature-dev-net-24; cases_by_saturation lists the 8 names of each size. Address a test network by its name: macro_params={\"network\": name} (or the argument network=name). Test networks are served from recorded rollouts (observation pool signature-dev-networks); their macro seeds are not part of the benchmark. A test network is observed only at its listed size, given as an integer, at distinct snapshot times of the grid [0.001, 0.002, 0.005, 0.01, 0.02, 0.05, 0.1, 0.2, 0.5, 1.0], with at most 100 (size 6), 53 (size 12) or 21 (size 30) recorded rollouts, so that every recorded rollout can be observed at all grid times in one request. Rollout i of a test network is always the same recorded rollout: runs=n returns rollouts 0..n-1, and sample_params.seed is not available for test networks. Requesting the direct is_raf field for a test network is rejected; other observations and mathematical inference are allowed. is_raf is true only when the whole network is a RAF set: the reactants of every reaction can be produced from the food set, and every reaction has at least one catalyst among the species so produced. A network that only contains a smaller RAF subset is not RAF. The macro parameter complexity has no effect, and alpha(3) = 0, so every reaction has one or two reactants. training_labels_by_saturation lists, for each size, 8 RAF and 8 non-RAF labelled training networks drawn from a separate seed bank. train_seeds and self-chosen macro seeds follow the unconditioned natural RAF rates, and direct is_raf queries are allowed for them. Every request comes from the same budget. Return {'predictions': {T: {network_name: bool_or_probability}}}. Fixed macro parameters and seed roles are public. Interventions (micro_params.max_raf, micro_params.prune_catalysts) are not available. Score: for each size, soft F1 of the RAF class from the submitted probabilities (booleans count as 1 or 0), adjusted for chance as (F1 - c) / (1 - c), where c is the F1 expected when the test labels are randomly permuted; with 4 + 4 networks this equals the mean probability on RAF networks minus the mean probability on non-RAF networks. The primary score is the mean over sizes, clipped below at 0: every constant answer scores 0 and a perfect answer 1. The unclipped value and thresholded macro F1 are reported.",
+  "metadata": {
+    "level": 4,
+    "category": "Signature Recognition",
+    "validation": {
+      "metric": "chance_adjusted_soft_f1",
+      "min_score": 0.5
+    },
+    "api_limits": {
+      "max_generate_calls": 40
+    },
+    "primary_metric": "chance_adjusted_soft_f1",
+    "primary_metric_direction": "higher_is_better"
+  },
+  "visible": {
+    "simulator_id": "raf",
+    "macro_params": {
+      "M0": 2,
+      "K": 3,
+      "p": 0.15,
+      "complexity": 0.5,
+      "alpha": {
+        "kind": "linear_cutoff",
+        "scale": 0.05,
+        "cutoff": 3,
+        "floor": 0.0
+      },
+      "k_lig": 1.0,
+      "k_unlig": 0.05,
+      "step_limit": 50000
+    },
+    "seed_roles": {
+      "macro_params.network": "public name of a test network, served from recorded rollouts",
+      "macro_params.seed": "network topology and catalysis of a training network or a network of your own choice",
+      "sample_params.seed": "base for planner-derived independent micro rollout seeds of a training network or a network of your own choice; not available for recorded test objects",
+      "runs": "independent micro trajectories on the same macro network; never independent RAF labels"
+    },
+    "saturations": [
+      6,
+      12,
+      30
+    ],
+    "cases_by_saturation": {
+      "6": [
+        "signature-dev-net-01",
+        "signature-dev-net-02",
+        "signature-dev-net-03",
+        "signature-dev-net-04",
+        "signature-dev-net-05",
+        "signature-dev-net-06",
+        "signature-dev-net-07",
+        "signature-dev-net-08"
+      ],
+      "12": [
+        "signature-dev-net-09",
+        "signature-dev-net-10",
+        "signature-dev-net-11",
+        "signature-dev-net-12",
+        "signature-dev-net-13",
+        "signature-dev-net-14",
+        "signature-dev-net-15",
+        "signature-dev-net-16"
+      ],
+      "30": [
+        "signature-dev-net-17",
+        "signature-dev-net-18",
+        "signature-dev-net-19",
+        "signature-dev-net-20",
+        "signature-dev-net-21",
+        "signature-dev-net-22",
+        "signature-dev-net-23",
+        "signature-dev-net-24"
+      ]
+    },
+    "test_label_access": "observations_only",
+    "train_seeds": [
+      1236310286,
+      1965252927,
+      1426703061,
+      1696432703,
+      2028945355,
+      87550748,
+      1267038844,
+      579373264,
+      1533454783,
+      1845782732,
+      958565824,
+      920695335,
+      1389940220,
+      2121183128,
+      562958637,
+      1854997322
+    ],
+    "evaluation_design": "8 named test networks per size selected as exactly 4 RAF / 4 non-RAF, served from recorded rollouts at their listed size; 8 + 8 labelled training networks per size from a separate bank; train_seeds and self-chosen seeds follow natural rates. Direct test is_raf queries and interventions are not available; observations and mathematical inference remain allowed.",
+    "allowed_interventions": [],
+    "training_labels_by_saturation": {
+      "6": {
+        "2105705401": true,
+        "1442465114": false,
+        "1786246108": true,
+        "1927168006": true,
+        "1252873661": true,
+        "204467672": false,
+        "908166334": false,
+        "2114615900": true,
+        "3013420": false,
+        "1652445003": true,
+        "482410146": true,
+        "1769039466": true,
+        "981793684": false,
+        "122825767": false,
+        "357351887": false,
+        "28873448": false
+      },
+      "12": {
+        "418838175": true,
+        "823008307": false,
+        "96940528": true,
+        "431474147": true,
+        "177280105": false,
+        "722036788": false,
+        "1800946662": false,
+        "348028199": false,
+        "1748258620": true,
+        "973902274": false,
+        "1352620706": false,
+        "453983026": true,
+        "1936558814": true,
+        "41715331": true,
+        "1967195664": true,
+        "462690688": false
+      },
+      "30": {
+        "71859394": false,
+        "1571972636": true,
+        "1521973091": false,
+        "57017759": true,
+        "1443884024": true,
+        "1448829517": true,
+        "7206349": false,
+        "1754577116": true,
+        "674558915": false,
+        "365349566": true,
+        "622541737": false,
+        "915669202": false,
+        "191159142": false,
+        "1229466215": true,
+        "426126747": false,
+        "314338046": true
+      }
+    },
+    "test_networks": [
+      "signature-dev-net-01",
+      "signature-dev-net-02",
+      "signature-dev-net-03",
+      "signature-dev-net-04",
+      "signature-dev-net-05",
+      "signature-dev-net-06",
+      "signature-dev-net-07",
+      "signature-dev-net-08",
+      "signature-dev-net-09",
+      "signature-dev-net-10",
+      "signature-dev-net-11",
+      "signature-dev-net-12",
+      "signature-dev-net-13",
+      "signature-dev-net-14",
+      "signature-dev-net-15",
+      "signature-dev-net-16",
+      "signature-dev-net-17",
+      "signature-dev-net-18",
+      "signature-dev-net-19",
+      "signature-dev-net-20",
+      "signature-dev-net-21",
+      "signature-dev-net-22",
+      "signature-dev-net-23",
+      "signature-dev-net-24"
+    ],
+    "observation_pool": "signature-dev-networks"
+  }
+}

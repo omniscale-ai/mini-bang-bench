@@ -1,0 +1,22 @@
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: mini-bang
+      MINIO_ROOT_PASSWORD: mini-bang-secret
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio_data:/data
+
+  minio-init:
+    image: minio/mc:latest
+    depends_on:
+      - minio
+    entrypoint: ["/bin/sh", "-c"]
+    command: >
+      until mc alias set local http://minio:9000 mini-bang mini-bang-secret;
+      do sleep 1; done;
+      mc mb -p local/mini-bang-payloads || true
+

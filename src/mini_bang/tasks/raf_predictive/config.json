@@ -1,0 +1,35 @@
+{
+  "task_id": "raf/predictive",
+  "task_version": "1",
+  "task_class": "mini_bang.tasks.raf_predictive.predictive_task:RAFLevel6PredictiveTask",
+  "api_class": "mini_bang.tasks.raf_predictive.predictive_api:RAFPredictiveAPI",
+  "scorer_class": "mini_bang.tasks.raf_predictive.scorer:RAFPredictiveScorer",
+  "answer_format": "mini_bang.tasks.raf_common.answer_format:CHAIN_PROBABILITIES",
+  "policy_class": "mini_bang.tasks.raf_predictive.policy:RAFPredictivePolicy",
+  "default_instance_id": "per-chain-forecast",
+  "instance_variants": {
+    "dev": "dev"
+  },
+  "description": "Predict RAF formation probabilities on larger growth chains using experiments on smaller networks only. The instance declares separate experimental and prediction sizes under fixed macro parameters.",
+  "metadata": {
+    "level": "5a",
+    "level_scheme": "five levels of understanding",
+    "category": "Predictive Generalisation",
+    "benchmark": "mini-bang"
+  },
+  "validation": {
+    "epsilon": 1e-06,
+    "max_cross_entropy": 0.65
+  },
+  "api": {
+    "max_generate_calls": 50,
+    "reserved_seed_ranges": {
+      "macro_params.seed": [
+        [
+          300000,
+          399999
+        ]
+      ]
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "task_id": "raf/mechanism-prob",
+  "task_version": "1",
+  "task_class": "mini_bang.tasks.raf_mechanism_prob.probability_task:RAFLevel5MechanismProbabilityTask",
+  "api_class": "mini_bang.tasks.raf_mechanism_prob.probability_api:RAFMechanismProbabilityAPI",
+  "scorer_class": "mini_bang.tasks.raf_mechanism_prob.scorer:RAFMechanismProbabilityScorer",
+  "answer_format": "mini_bang.tasks.raf_common.answer_format:FAMILY_PROBABILITIES",
+  "policy_class": "mini_bang.tasks.raf_mechanism_prob.policy:RAFMechanismProbabilityPolicy",
+  "acceptance": "mini_bang.tasks.raf_mechanism_prob.acceptance",
+  "default_instance_id": "hidden-families",
+  "instance_variants": {
+    "dev": "dev"
+  },
+  "description": "Infer RAF probability at target network sizes unavailable to experiments. The instance declares separate experimental and prediction sizes under fixed macro parameters.",
+  "metadata": {
+    "level": "3",
+    "level_scheme": "five levels of understanding",
+    "category": "Mechanism Inference",
+    "benchmark": "mini-bang"
+  },
+  "validation": {
+    "max_kl": 0.6,
+    "epsilon": 1e-06
+  },
+  "api": {
+    "max_generate_calls": 100
+  }
+}

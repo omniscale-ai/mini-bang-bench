@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mini-bang"
+version = "0.2.0"
+description = "mini-bang benchmark runtime and CLI"
+requires-python = ">=3.11"
+dependencies = [
+  "numpy>=1.26",
+  "pydantic>=2"
+]
+
+[project.optional-dependencies]
+mcp = ["fastmcp"]
+s3 = ["boto3"]
+k8s = ["kubernetes>=30"]
+agents = ["langchain"]
+flow-lenia = ["jax>=0.4", "jaxlib>=0.4"]
+flow-lenia-scoring = ["scipy>=1.12", "scikit-learn>=1.5"]
+flow-lenia-data = ["boto3", "PyYAML>=6"]
+visualization = ["matplotlib>=3.8"]
+dev = ["pytest", "ruamel.yaml>=0.18", "toml-sort>=0.24", "lxml>=5"]
+all = ["fastmcp", "boto3", "kubernetes>=30", "langchain", "jax>=0.4", "jaxlib>=0.4", "scipy>=1.12", "scikit-learn>=1.5", "PyYAML>=6", "matplotlib>=3.8"]
+
+[project.scripts]
+mini-bang = "mini_bang.cli:main"
+mini-bang-agent = "mini_bang.agent_runtime:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+mini_bang = [
+  "framework/feature_execution_profile.json",
+  "tasks/*/*.json",
+  "tasks/*/instances/*.json",
+  "tasks/*/observation_pools/*",
+  "tasks/*/gold/*.json",
+  "simulators/*/*.json",
+  "testing/*/*.json",
+  "mcp/*.json",
+  "client/deployment/templates/compose/*.yaml",
+  "client/deployment/templates/k8s/*.yaml",
+  "client/deployment/templates/k8s/partials/*.yaml"
+]
+
+[tool.pytest.ini_options]
+# Bare `pytest` collects only tests/; workdir/ holds runtime data.
+testpaths = ["tests"]
+norecursedirs = [
+  ".*",
+  "*.egg",
+  "*.egg-info",
+  "__pycache__",
+  "build",
+  "deploy",
+  "dist",
+  "docs",
+  "examples",
+  "node_modules",
+  "venv",
+  "workdir"
+]

@@ -1,0 +1,43 @@
+{
+  "task_id": "flow_lenia/minibang-metric",
+  "task_version": "1",
+  "description": "Develop a Scalar Metric for Minibang Detection from System States\n\nA minibang is a temporal event in which the dynamics of the whole system changes qualitatively over a relatively short interval. It can simplify or enrich the dynamics. Interpret the dynamics through a biological-population intuition: distinguish species-like types of organisms and examine their behavior, interactions and collective organization. A qualitative change alters the system's repertoire of persistent types, their number or role, or the sustained way those populations move, interact or organize. This is an interpretive analogy, not a claim of real biological taxonomy or living organisms. Rendered color and total mass alone do not identify a type or determine whether its dynamics changed. The initial explosion and settling are outside the task: observations are available only from the human-annotated onset of established dynamics onward. Color change alone, a reversible fluctuation, or an isolated object's motion is insufficient. RGB shows only part of the state: object identity is not identical to rendered color. Time is in raw simulation steps; 3000 steps correspond to one video second. Intervals are half-open [start, end). The event start is the last moment of the previous established dynamics; the event end is the first moment of the next established dynamics. Established dynamics can include persistent motion and fluctuations: established does not mean motionless.",
+  "task_class": "mini_bang.tasks.flow_lenia_common.api:FlowLeniaTask",
+  "api_class": "mini_bang.tasks.flow_lenia_common.api:FlowLeniaAPI",
+  "policy_class": "mini_bang.tasks.flow_lenia_common.policy:FlowLeniaPolicy",
+  "scorer_class": "mini_bang.tasks.flow_lenia_common.source_authority:SourceAuthorityScorer",
+  "answer_format": "mini_bang.tasks.flow_lenia_common.answer_format:SCALAR_METRIC",
+  "default_instance_id": "windows",
+  "metadata": {
+    "level": "1",
+    "level_scheme": "five levels of understanding"
+  },
+  "instance_variants": {},
+  "api": {
+    "max_generate_calls": 160,
+    "max_observed_states": 1024,
+    "max_observed_raw_steps": 8000000,
+    "max_states_per_request": 64,
+    "max_request_raw_steps": 180000,
+    "step_multiple": 100,
+    "allowed_fields": [
+      "rgb",
+      "A",
+      "P",
+      "F",
+      "Food"
+    ],
+    "instructions": "Return {\"code\": \"Python source defining score(window)\"}. Design a scalar metric correlated with minibang presence. window is a lazy iterable of dicts with A, P, Food numpy arrays. Return one finite number; higher means more likely to be inside a minibang. Training cases expose labels; hidden evaluation uses different trajectories. No fitted classifier transforms your metric. Primary score is max(0, 2*AUROC - 1) on hidden windows, in [0, 1]: a constant, random or inverted metric scores about 0 and a perfect ranking scores 1. AUROC, the unclipped 2*AUROC - 1, Spearman and temporal thinning 2/4 are diagnostics. Thinning keeps every 2nd or 4th checkpoint and appends the final checkpoint if that stride missed it. Both endpoints and the observation duration are preserved; the final sampling gap may be shorter than the regular stride. Code runs offline with time/memory limits. Use only the provided checkpoint stream. Every published window contains each intersecting minibang in full; negative windows contain none. Hidden checkpoint streams cover the complete window at a preferred cadence of 3000 raw steps, adapted to at most 64 states, retaining the first and final available checkpoint. Long streams are delivered in ordered request chunks; thinning preserves both endpoints."
+  },
+  "validation": {
+    "epsilon": 1e-06,
+    "max_intervals": 16,
+    "iou_threshold": 0.5
+  },
+  "scoring": {
+    "requires_services": true,
+    "requires_executable_runner": true,
+    "scalar_metric": "hidden_test_auroc_skill"
+  },
+  "source_authority_base_scorer_class": "mini_bang.tasks.flow_lenia_common.representation:MinibangMetricScorer"
+}

@@ -1,0 +1,42 @@
+{
+  "task_id": "raf/timing",
+  "task_version": "1",
+  "task_class": "mini_bang.tasks.raf_timing.timing_task:RAFLevel2TimingTask",
+  "api_class": "mini_bang.tasks.raf_timing.timing_api:RAFTimingAPI",
+  "scorer_class": "mini_bang.tasks.raf_timing.scorer:RAFTimingScorer",
+  "answer_format": "mini_bang.tasks.raf_common.answer_format:TIMING",
+  "policy_class": "mini_bang.tasks.raf_timing.policy:RAFTimingPolicy",
+  "default_instance_id": "named-networks",
+  "instance_variants": {
+    "dev": "dev"
+  },
+  "description": "Estimate first-appearance distributions of the listed target species in the listed RAF test networks on the published snapshot grid. Use generate_samples(T, runs, snapshot_times, extras=[\"first_hits\"], macro_params={\"network\": name}) and return, for each test network and target species, a probability for every grid time and for 'none'. The instance states the networks, targets, grid, budget and score.",
+  "metadata": {
+    "benchmark": "mini-bang",
+    "level": "1",
+    "level_scheme": "five levels of understanding",
+    "category": "Temporal Distribution Estimation",
+    "tags": [
+      "raf",
+      "temporal",
+      "distribution"
+    ],
+    "snapshot_category_none": "none"
+  },
+  "api": {
+    "simulator_id": "raf",
+    "max_snapshot_times_per_request": 3,
+    "reserved_seed_ranges": {
+      "sample_params.seed": [
+        [
+          510000,
+          529999
+        ]
+      ]
+    }
+  },
+  "validation": {
+    "loglik_tolerance": 0.35,
+    "epsilon": 1e-06
+  }
+}

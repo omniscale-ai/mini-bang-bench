@@ -1,0 +1,144 @@
+{
+  "instance_version": "1",
+  "description": "Develop a Scalar Metric for Minibang Detection from System States\n\nA minibang is a temporal event in which the dynamics of the whole system changes qualitatively over a relatively short interval. It can simplify or enrich the dynamics. Interpret the dynamics through a biological-population intuition: distinguish species-like types of organisms and examine their behavior, interactions and collective organization. A qualitative change alters the system's repertoire of persistent types, their number or role, or the sustained way those populations move, interact or organize. This is an interpretive analogy, not a claim of real biological taxonomy or living organisms. Rendered color and total mass alone do not identify a type or determine whether its dynamics changed. The initial explosion and settling are outside the task: observations are available only from the human-annotated onset of established dynamics onward. Color change alone, a reversible fluctuation, or an isolated object's motion is insufficient. RGB shows only part of the state: object identity is not identical to rendered color. Time is in raw simulation steps; 3000 steps correspond to one video second. Intervals are half-open [start, end). The event start is the last moment of the previous established dynamics; the event end is the first moment of the next established dynamics. Established dynamics can include persistent motion and fluctuations: established does not mean motionless.",
+  "visible": {
+    "time_unit": "raw_step",
+    "mode": "windows",
+    "cases": [
+      {
+        "case_id": "window-004__steps-202400-425000",
+        "t1": 202400,
+        "t2": 425000,
+        "observation_window": [
+          202400,
+          425000
+        ],
+        "label": false
+      },
+      {
+        "case_id": "window-007__steps-259700-442800",
+        "t1": 259700,
+        "t2": 442800,
+        "observation_window": [
+          259700,
+          442800
+        ],
+        "label": true
+      },
+      {
+        "case_id": "window-013__steps-301500-463500",
+        "t1": 301500,
+        "t2": 463500,
+        "observation_window": [
+          301500,
+          463500
+        ],
+        "label": false
+      },
+      {
+        "case_id": "window-021__steps-265300-411300",
+        "t1": 265300,
+        "t2": 411300,
+        "observation_window": [
+          265300,
+          411300
+        ],
+        "label": true
+      },
+      {
+        "case_id": "window-023__steps-346200-496900",
+        "t1": 346200,
+        "t2": 496900,
+        "observation_window": [
+          346200,
+          496900
+        ],
+        "label": false
+      },
+      {
+        "case_id": "window-026__steps-209600-430200",
+        "t1": 209600,
+        "t2": 430200,
+        "observation_window": [
+          209600,
+          430200
+        ],
+        "label": true
+      },
+      {
+        "case_id": "window-028__steps-143900-271000",
+        "t1": 143900,
+        "t2": 271000,
+        "observation_window": [
+          143900,
+          271000
+        ],
+        "label": false
+      },
+      {
+        "case_id": "window-034__steps-188800-404400",
+        "t1": 188800,
+        "t2": 404400,
+        "observation_window": [
+          188800,
+          404400
+        ],
+        "label": true
+      },
+      {
+        "case_id": "window-035__steps-285000-492800",
+        "t1": 285000,
+        "t2": 492800,
+        "observation_window": [
+          285000,
+          492800
+        ],
+        "label": true
+      },
+      {
+        "case_id": "window-036__steps-243800-472100",
+        "t1": 243800,
+        "t2": 472100,
+        "observation_window": [
+          243800,
+          472100
+        ],
+        "label": false
+      },
+      {
+        "case_id": "window-038__steps-217500-339100",
+        "t1": 217500,
+        "t2": 339100,
+        "observation_window": [
+          217500,
+          339100
+        ],
+        "label": true
+      },
+      {
+        "case_id": "window-041__steps-155200-261300",
+        "t1": 155200,
+        "t2": 261300,
+        "observation_window": [
+          155200,
+          261300
+        ],
+        "label": false
+      }
+    ],
+    "observation_budget": {
+      "max_generate_calls": 214,
+      "max_observed_states": 1366,
+      "max_observed_raw_steps": 10666667
+    },
+    "stabilization_annotations_complete": true,
+    "max_feature_dim": 1,
+    "checkpoint_sampling": {
+      "preferred_step": 3000,
+      "max_states_per_window": 64,
+      "retain_endpoints": true
+    }
+  },
+  "raw_step_budget_allocation": "duration_weighted",
+  "scalar_metric": "hidden_test_auroc_skill"
+}

@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mini-bang-minio-bootstrap
+  namespace: $namespace
+  labels:
+    mini-bang-role: storage-bootstrap
+spec:
+  restartPolicy: OnFailure
+  automountServiceAccountToken: false
+  containers:
+    - name: bucket
+      image: $worker_image
+      imagePullPolicy: IfNotPresent
+      command: ["python", "-c"]
+      args:
+        - |
+          import os, time
+          import boto3
+          from botocore.config import Config
+          from botocore.exceptions import ClientError, EndpointConnectionError, ConnectionClosedError, ConnectTimeoutError, ReadTimeoutError
+          client = boto3.client("s3", endpoint_url="http://mini-bang-minio:9000",
+              config=Config(connect_timeout=5, read_timeout=10, retries={"max_attempts": 0}))
+          bucket = os.environ["MINI_BANG_STORAGE_BUCKET"]
+          deadline = time.monotonic() + 300
+          while True:
+              try:
+                  client.create_bucket(Bucket=bucket)
+                  client.head_bucket(Bucket=bucket)
+                  break
+              except ClientError as error:
+                  code = error.response.get("Error", {}).get("Code")
+                  if code in {"BucketAlreadyOwnedByYou", "BucketAlreadyExists"}:
+                      client.head_bucket(Bucket=bucket)
+                      break
+                  if code not in {"ServiceUnavailable", "InternalError", "SlowDown", "RequestTimeout"}:
+                      raise
+              except (EndpointConnectionError, ConnectionClosedError, ConnectTimeoutError, ReadTimeoutError):
+                  pass
+              if time.monotonic() >= deadline:
+                  raise RuntimeError("MinIO bucket bootstrap did not become available")
+              time.sleep(2)
+          print("MinIO bucket is available: " + bucket)
+      env:
+        - name: MINI_BANG_STORAGE_BUCKET
+          value: $minio_bucket
+      envFrom:
+        - secretRef:
+            name: mini-bang-storage-credentials
+      resources:
+        requests:
+          cpu: 50m
+          memory: 128Mi
+        limits:
+          cpu: "1"
+          memory: 128Mi

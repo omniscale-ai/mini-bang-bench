@@ -1,0 +1,10 @@
+FROM python:3.13-slim
+
+WORKDIR /sandbox
+RUN pip install --no-cache-dir 'numpy==2.4.4' 'scipy==1.18.1' \
+    && useradd --create-home --uid 10001 mini-bang
+USER 10001
+
+ENV PYTHONUNBUFFERED=1
+ENV PYTHONDONTWRITEBYTECODE=1 OPENBLAS_NUM_THREADS=1 OMP_NUM_THREADS=1
+CMD ["python", "--version"]

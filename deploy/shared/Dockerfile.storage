@@ -1,0 +1,12 @@
+# Build from the repository root. No upstream MinIO image or package mirror.
+FROM python:3.11-slim AS official-minio
+COPY deploy/shared/download_minio.py /build/download_minio.py
+RUN python /build/download_minio.py --output /storage-bin/minio
+
+FROM debian:bookworm-slim
+COPY --from=official-minio /storage-bin/minio /usr/local/bin/minio
+RUN mkdir /data && chown 10001:10001 /data
+USER 10001:10001
+EXPOSE 9000 9001
+ENTRYPOINT ["/usr/local/bin/minio"]
+CMD ["server", "/data", "--console-address", ":9001"]

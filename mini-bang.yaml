@@ -1,0 +1,29 @@
+mode: k8s-official
+task:
+  default_instance_id: default
+backend:
+  kind: cluster
+  engine: executor_replicas
+  workers: 1
+  reuse_strategy: none
+agent:
+  placement: k8s-pool
+payload:
+  mode: minio
+  inline_threshold_bytes: 1048576
+  filesystem:
+    root: ./workdir/runs/observations
+  s3:
+    bucket: mini-bang-payloads
+    prefix: dev/runs
+    endpoint_url: http://mini-bang-minio:9000
+runs:
+  root: ./workdir/runs
+artifacts:
+  root: ./workdir/datasets/task-artifacts
+cache:
+  root: ./workdir/cache
+security:
+  trusted_dev_mode: false
+  allow_pickle_payloads: false
+  allow_raw_file_refs: false

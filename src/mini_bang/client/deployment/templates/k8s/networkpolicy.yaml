@@ -1,0 +1,46 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mini-bang-agent-boundary
+  namespace: $namespace
+spec:
+  podSelector:
+    matchLabels:
+      mini-bang-role: agent
+  policyTypes: ["Egress"]
+  egress:
+    - to:
+        - podSelector:
+            matchLabels:
+              app: mini-bang-runner
+      ports:
+        - protocol: TCP
+          port: 8765
+    # DNS only to cluster DNS; a rule without `to` would allow port 53 to any address.
+    - to:
+        - namespaceSelector:
+            matchLabels:
+              kubernetes.io/metadata.name: kube-system
+          podSelector:
+            matchLabels:
+              k8s-app: kube-dns
+      ports:
+        - protocol: UDP
+          port: 53
+        - protocol: TCP
+          port: 53
+---
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: mini-bang-executable-default-deny-egress
+  namespace: $namespace
+spec:
+  podSelector:
+    matchLabels:
+      mini-bang-role: executable
+      mini-bang-network: disabled
+  # Submitted code gets no network in either direction; the pool scheduler uses pod exec.
+  policyTypes: ["Ingress", "Egress"]
+  ingress: []
+  egress: []

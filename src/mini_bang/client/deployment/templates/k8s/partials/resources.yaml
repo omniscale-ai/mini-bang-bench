@@ -1,0 +1,4 @@
+          resources:
+            limits:
+$limits
+$requests_section

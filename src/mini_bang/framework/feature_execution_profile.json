@@ -1,0 +1,14 @@
+{
+  "version": "feature-execution-safety-fuses",
+  "idle_seconds": 600.0,
+  "warning_seconds": 300.0,
+  "poll_seconds": 1.0,
+  "startup_idle_seconds": 600.0,
+  "emergency_seconds": null,
+  "mode": "production",
+  "submitted_cpu_seconds": 600.0,
+  "submitted_task_cpu_seconds": 3600.0,
+  "whole_worker_cpu_seconds": 3600.0,
+  "preparation_retries": 1,
+  "expected_worker_version": "parallel-feature-stream"
+}

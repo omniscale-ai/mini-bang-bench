@@ -1,0 +1,83 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mini-bang-minio
+  namespace: $namespace
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: mini-bang-minio
+  template:
+    metadata:
+      labels:
+        app: mini-bang-minio
+    spec:
+      automountServiceAccountToken: false
+      securityContext:
+        fsGroup: 10001
+      containers:
+        - name: minio
+          image: $minio_image
+          imagePullPolicy: IfNotPresent
+          securityContext:
+            runAsUser: 10001
+            runAsGroup: 10001
+            runAsNonRoot: true
+            allowPrivilegeEscalation: false
+            capabilities:
+              drop: ["ALL"]
+          args: ["server", "/data", "--console-address", ":9001"]
+          env:
+            - name: MINIO_ROOT_USER
+              valueFrom:
+                secretKeyRef:
+                  name: mini-bang-storage-credentials
+                  key: AWS_ACCESS_KEY_ID
+            - name: MINIO_ROOT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mini-bang-storage-credentials
+                  key: AWS_SECRET_ACCESS_KEY
+          ports:
+            - name: api
+              containerPort: 9000
+            - name: console
+              containerPort: 9001
+          readinessProbe:
+            httpGet:
+              path: /minio/health/ready
+              port: 9000
+            periodSeconds: 2
+          resources:
+            requests:
+              cpu: $minio_cpu_request
+              memory: $minio_memory
+            limits:
+              cpu: $minio_cpu_limit
+              memory: $minio_memory
+          volumeMounts:
+            - name: data
+              mountPath: /data
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: mini-bang-minio-data
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mini-bang-minio
+  namespace: $namespace
+spec:
+  selector:
+    app: mini-bang-minio
+  ports:
+    - name: api
+      port: 9000
+      targetPort: 9000
+    - name: console
+      port: 9001
+      targetPort: 9001

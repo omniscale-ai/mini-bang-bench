@@ -1,0 +1,45 @@
+{
+  "task_id": "flow_lenia/representation",
+  "task_version": "1",
+  "description": "Develop a Compact Representation of System Dynamics for Minibang Detection\n\nA minibang is a temporal event in which the dynamics of the whole system changes qualitatively over a relatively short interval. It can simplify or enrich the dynamics. Interpret the dynamics through a biological-population intuition: distinguish species-like types of organisms and examine their behavior, interactions and collective organization. A qualitative change alters the system's repertoire of persistent types, their number or role, or the sustained way those populations move, interact or organize. This is an interpretive analogy, not a claim of real biological taxonomy or living organisms. Rendered color and total mass alone do not identify a type or determine whether its dynamics changed. The initial explosion and settling are outside the task: observations are available only from the human-annotated onset of established dynamics onward. Color change alone, a reversible fluctuation, or an isolated object's motion is insufficient. RGB shows only part of the state: object identity is not identical to rendered color. Time is in raw simulation steps; 3000 steps correspond to one video second. Intervals are half-open [start, end). The event start is the last moment of the previous established dynamics; the event end is the first moment of the next established dynamics. Established dynamics can include persistent motion and fluctuations: established does not mean motionless.",
+  "task_class": "mini_bang.tasks.flow_lenia_common.api:FlowLeniaTask",
+  "api_class": "mini_bang.tasks.flow_lenia_common.api:FlowLeniaAPI",
+  "policy_class": "mini_bang.tasks.flow_lenia_common.policy:FlowLeniaPolicy",
+  "scorer_class": "mini_bang.tasks.flow_lenia_common.source_authority:SourceAuthorityScorer",
+  "answer_format": "mini_bang.tasks.flow_lenia_common.answer_format:REPRESENTATION",
+  "agent_files": [
+    "mini_bang.tasks.flow_lenia_common:probe.py"
+  ],
+  "default_instance_id": "windows",
+  "metadata": {
+    "level": "2",
+    "level_scheme": "five levels of understanding"
+  },
+  "instance_variants": {},
+  "api": {
+    "max_generate_calls": 160,
+    "max_observed_states": 1024,
+    "max_observed_raw_steps": 8000000,
+    "max_states_per_request": 64,
+    "max_request_raw_steps": 180000,
+    "step_multiple": 100,
+    "allowed_fields": [
+      "rgb",
+      "A",
+      "P",
+      "F",
+      "Food"
+    ],
+    "instructions": "Return {\"code\": \"Python source defining featurize(window)\"}. window is a lazy iterable of checkpoints, each a dict with A, P, Food numpy arrays; Food is the food field (the optional flow field F is different). Return a finite 1D numpy array of fixed length 1..8; more than 8 numbers is an invalid submission. Do not read files or persist state outside the provided window. No network, subprocesses or external downloads are available during scoring. Training cases have visible labels; hidden windows come from other simulations. The probe is StandardScaler followed by LogisticRegression(C=1.0, penalty='l2', solver='liblinear', fit_intercept=True, intercept_scaling=1.0, class_weight=None, max_iter=1000, random_state=0), evaluated by grouped leave-pair-out over the hidden windows: for every pair of one hidden window with a minibang and one without, a fresh probe is fitted on all other windows (the training windows plus the remaining hidden windows, with their labels), excluding every window from the same simulation as either window of the pair, and predicts both windows of the pair. Training windows are always in the fit and never in pairs. AUROC is the fraction of pairs in which the window with a minibang gets the higher probability; ties count 0.5. Primary score is max(0, 2*AUROC - 1), so a constant feature scores 0. A public copy is provided as probe.py: validate_probe_leave_pair_out(features, labels, groups=None) runs the same protocol on windows you supply, with every window taking part in pairs; groups are simulation identifiers and default to one group per window, because the simulations of the training windows are not published. It uses only data supplied by you. Diagnostics include compression and temporal thinning by 2 and 4: the probe of each pair, fitted on unthinned features, also predicts the thinned features of that pair. Thinning keeps every 2nd or 4th checkpoint and appends the final checkpoint if that stride missed it. Both endpoints and the observation duration are preserved; the final sampling gap may be shorter than the regular stride. Every published window contains each intersecting minibang in full; negative windows contain none. Hidden checkpoint streams cover the complete window at a preferred cadence of 3000 raw steps, adapted to at most 64 states, retaining the first and final available checkpoint. Long streams are delivered in ordered request chunks; thinning preserves both endpoints."
+  },
+  "validation": {
+    "epsilon": 1e-06,
+    "max_intervals": 16,
+    "iou_threshold": 0.5
+  },
+  "scoring": {
+    "requires_services": true,
+    "requires_executable_runner": true
+  },
+  "source_authority_base_scorer_class": "mini_bang.tasks.flow_lenia_common.representation:RepresentationScorer"
+}

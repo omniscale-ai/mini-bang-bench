@@ -1,0 +1,34 @@
+{
+  "truth_by_saturation": {
+    "6": {
+      "signature-dev-net-01": false,
+      "signature-dev-net-02": true,
+      "signature-dev-net-03": false,
+      "signature-dev-net-04": true,
+      "signature-dev-net-05": true,
+      "signature-dev-net-06": true,
+      "signature-dev-net-07": false,
+      "signature-dev-net-08": false
+    },
+    "12": {
+      "signature-dev-net-09": false,
+      "signature-dev-net-10": true,
+      "signature-dev-net-11": false,
+      "signature-dev-net-12": true,
+      "signature-dev-net-13": true,
+      "signature-dev-net-14": true,
+      "signature-dev-net-15": false,
+      "signature-dev-net-16": false
+    },
+    "30": {
+      "signature-dev-net-17": true,
+      "signature-dev-net-18": false,
+      "signature-dev-net-19": true,
+      "signature-dev-net-20": false,
+      "signature-dev-net-21": true,
+      "signature-dev-net-22": true,
+      "signature-dev-net-23": false,
+      "signature-dev-net-24": false
+    }
+  }
+}

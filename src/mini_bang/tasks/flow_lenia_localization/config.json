@@ -1,0 +1,45 @@
+{
+  "task_id": "flow_lenia/localization",
+  "task_version": "1",
+  "description": "Find the Start and End of Every Minibang in a Specified Time Window\n\nA minibang is a temporal event in which the dynamics of the whole system changes qualitatively over a relatively short interval. It can simplify or enrich the dynamics. Interpret the dynamics through a biological-population intuition: distinguish species-like types of organisms and examine their behavior, interactions and collective organization. A qualitative change alters the system's repertoire of persistent types, their number or role, or the sustained way those populations move, interact or organize. This is an interpretive analogy, not a claim of real biological taxonomy or living organisms. Rendered color and total mass alone do not identify a type or determine whether its dynamics changed. The initial explosion and settling are outside the task: observations are available only from the human-annotated onset of established dynamics onward. Color change alone, a reversible fluctuation, or an isolated object's motion is insufficient. RGB shows only part of the state: object identity is not identical to rendered color. Time is in raw simulation steps; 3000 steps correspond to one video second. Intervals are half-open [start, end). The event start is the last moment of the previous established dynamics; the event end is the first moment of the next established dynamics. Established dynamics can include persistent motion and fluctuations: established does not mean motionless.",
+  "task_class": "mini_bang.tasks.flow_lenia_common.api:FlowLeniaTask",
+  "api_class": "mini_bang.tasks.flow_lenia_common.api:FlowLeniaAPI",
+  "policy_class": "mini_bang.tasks.flow_lenia_common.policy:FlowLeniaPolicy",
+  "scorer_class": "mini_bang.tasks.flow_lenia_common.source_authority:SourceAuthorityScorer",
+  "answer_format": "mini_bang.tasks.flow_lenia_common.answer_format:LOCALIZATION",
+  "default_instance_id": "windows",
+  "metadata": {
+    "level": "1",
+    "level_scheme": "five levels of understanding"
+  },
+  "instance_variants": {
+    "inside_point": "inside-point"
+  },
+  "api": {
+    "max_generate_calls": 160,
+    "max_observed_states": 1024,
+    "max_observed_raw_steps": 8000000,
+    "max_states_per_request": 64,
+    "max_request_raw_steps": 180000,
+    "step_multiple": 100,
+    "allowed_fields": [
+      "rgb",
+      "A",
+      "P",
+      "F",
+      "Food"
+    ],
+    "instructions": "Return {\"intervals\": {case_id: [[start_step,end_step], ...]}} for every case. Use an empty list if there is no event. Return all complete event intervals in [t1,t2). The start is the last moment of the previous established dynamics and the end is the first moment of the next established dynamics; established does not mean motionless. Intervals must be sorted, non-overlapping and have positive duration. Primary score is chance-adjusted soft F1 clipped at zero. Soft F1 = 2*sum(IoU of one-to-one matched intervals)/(number of predicted intervals + number of true intervals), with no IoU threshold. Chance soft F1 is the soft F1 of the same answer when the true events are dealt to the cases at random, keeping their relative position in the window (in inside-point mode, their offsets around inside_t, scaled by the window length). Chance-adjusted soft F1 = (soft F1 - chance soft F1)/(1 - chance soft F1). Score = max(0, chance-adjusted soft F1), in [0, 1]: any answer that ignores the observations or is worse than chance scores 0, and the perfect answer scores 1. The unclipped chance-adjusted soft F1, event F1 at IoU >= 0.5 and boundary errors are diagnostics. In inside-point mode return exactly one interval containing inside_t."
+  },
+  "validation": {
+    "epsilon": 1e-06,
+    "max_intervals": 16,
+    "iou_threshold": 0.5
+  },
+  "scoring": {
+    "requires_services": false,
+    "requires_executable_runner": false,
+    "localization_metric": "chance_adjusted_soft_f1_clipped_at_zero"
+  },
+  "source_authority_base_scorer_class": "mini_bang.tasks.flow_lenia_common.localization:LocalizationScorer"
+}
